@@ -9,7 +9,7 @@ namespace assignment1
 
 		mStr = new char[mLength + 1];
 
-		for(int i = 0; i < mLength + 1; i++)
+		for (int i = 0; i < mLength + 1; i++)
 		{
 			mStr[i] = s[i];
 		}
@@ -81,19 +81,19 @@ namespace assignment1
 
 	int MyString::IndexOf(const char* s)
 	{
-		int checkLen = getCStringLength(s);
+		unsigned int checkLen = (unsigned int)getCStringLength(s);
 
-		for(int i = 0; i < this->GetLength() - checkLen + 1; i++)
+		for (unsigned int i = 0; i < this->GetLength() - checkLen + 1; i++)
 		{
-			bool isMatch = true;
-			for(int j = 0; j < checkLen; j++)
+			bool bIsMatch = true;
+			for (unsigned int j = 0; j < checkLen; j++)
 			{
 				if (this->mStr[i + j] != s[j])
 				{
-					isMatch = false;
+					bIsMatch = false;
 				}
 			}
-			if (isMatch)
+			if (bIsMatch)
 			{
 				return i;
 			}
@@ -107,17 +107,17 @@ namespace assignment1
 
 		int targetIdx = -1;
 
-		for (int i = 0; i < this->GetLength() - checkLen + 1; i++)
+		for (unsigned int i = 0; i < this->GetLength() - checkLen + 1; i++)
 		{
-			bool isMatch = true;
+			bool bIsMatch = true;
 			for (int j = 0; j < checkLen; j++)
 			{
 				if (this->mStr[i + j] != s[j])
 				{
-					isMatch = false;
+					bIsMatch = false;
 				}
 			}
-			if (isMatch)
+			if (bIsMatch)
 			{
 				targetIdx = i;
 			}
@@ -127,7 +127,7 @@ namespace assignment1
 
 	void MyString::Interleave(const char* s)
 	{
-		int len = getCStringLength(s);
+		unsigned int len = (unsigned int)getCStringLength(s);
 		if (len == 0)
 		{
 			return;
@@ -136,12 +136,12 @@ namespace assignment1
 		char* newStr = new char[mLength + len + 1];
 		char* tmp = newStr;
 
-		bool leftBig = GetLength() > len;
-		int diff = leftBig ? GetLength() - len : len - GetLength();
-		int firstIter = leftBig ? len : GetLength();
+		bool bIsleftBig = GetLength() > len;
+		int diff = bIsleftBig ? GetLength() - len : len - GetLength();
+		int firstIter = bIsleftBig ? len : GetLength();
 
 		int restart = 0;
-		for(int i = 0; i < firstIter; i++)
+		for (int i = 0; i < firstIter; i++)
 		{
 			*tmp = mStr[i];
 			tmp++;
@@ -152,7 +152,7 @@ namespace assignment1
 
 		for (int j = 0; j < diff; j++)
 		{
-			if(leftBig)
+			if(bIsleftBig)
 			{
 				*tmp = mStr[restart + j + 1];
 			}
@@ -208,7 +208,7 @@ namespace assignment1
 
 			char* tmp = newStr;
 
-			for(int i = 0; i < howManyChars; i++)
+			for (int i = 0; i < howManyChars; i++)
 			{
 				*tmp = c;
 				tmp++;
@@ -263,7 +263,7 @@ namespace assignment1
 	void MyString::Reverse()
 	{
 		char tmp;
-		for (int i = 0; i < GetLength() / 2; i++)
+		for (unsigned int i = 0; i < GetLength() / 2; i++)
 		{
 			tmp = mStr[i];
 			mStr[i] = mStr[GetLength() - 1 - i];
@@ -279,7 +279,7 @@ namespace assignment1
 			const char* rStr = rhs.GetCString();
 			const char* lStr = this->GetCString();
 
-			for(int i = 0; i < this->GetLength() + 1; i++)
+			for (unsigned int i = 0; i < this->GetLength() + 1; i++)
 			{
 				if (rStr[i] != lStr[i])
 				{
@@ -293,12 +293,25 @@ namespace assignment1
 
 	MyString& MyString::operator=(const MyString& rhs)
 	{
-		return *this;
+		if (&rhs == this)
+		{
+			return *this;
+		}
+
+		char* newStr = new char[rhs.GetLength() + 1];
+		for (int i = 0; i < rhs.GetLength() + 1; i++)
+		{
+			newStr[i] = rhs.GetCString()[i];
+		}
+
+		delete[] mStr;
+		mStr = newStr;
+		mLength = rhs.GetLength();
 	}
 
 	void MyString::ToLower()
 	{
-		for (int i = 0; i < GetLength(); i++) 
+		for (unsigned int i = 0; i < GetLength(); i++)
 		{
 			if ((mStr[i] > 64) && (mStr[i] < 91))
 			{
@@ -310,7 +323,7 @@ namespace assignment1
 
 	void MyString::ToUpper()
 	{
-		for (int i = 0; i < GetLength(); i++) 
+		for (unsigned int i = 0; i < GetLength(); i++)
 		{
 			if ((mStr[i] > 96) && (mStr[i] < 123))
 			{
@@ -319,7 +332,7 @@ namespace assignment1
 		}
 	}
 
-	int MyString::getCStringLength(const char* s) const
+	unsigned int MyString::getCStringLength(const char* s) const
 	{   
 		const char* tmp = s;
 		int len = 0;

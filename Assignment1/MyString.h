@@ -28,7 +28,7 @@ namespace assignment1
 		void ToUpper();
 
 	private:
-		int getCStringLength(const char* s) const;
+		unsigned int getCStringLength(const char* s) const;
 		int mLength;
 		char* mStr;
 	};
