@@ -48,6 +48,11 @@ namespace assignment1
     {
         int addLength = GetCStringLength(s);
 
+        if (addLength == 0)
+        {
+            return;
+        }
+
         char* newStr = new char[mLength + addLength + 1];
 
         for (int i = 0; i < mLength; i++)
@@ -123,6 +128,10 @@ namespace assignment1
     void MyString::Interleave(const char* s)
     {
         int len = GetCStringLength(s);
+        if (len == 0)
+        {
+            return;
+        }
 
         char* newStr = new char[mLength + len + 1];
         char* tmp = newStr;
@@ -131,7 +140,7 @@ namespace assignment1
         int diff = leftBig ? GetLength() - len : len - GetLength();
         int firstIter = leftBig ? len : GetLength();
 
-        int restart;
+        int restart = 0;
         for(int i = 0; i < firstIter; i++)
         {
             *tmp = mStr[i];
