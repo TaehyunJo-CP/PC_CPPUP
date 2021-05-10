@@ -308,8 +308,8 @@ int main()
 	assert(s23 == "abcdefg");
 
 	MyString s24("");
-	s24.Interleave("");
-	assert(s24 == "");
+	s24.Interleave("abcd");
+	assert(s24 == "abcd");
 
 	test();
 

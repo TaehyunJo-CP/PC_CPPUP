@@ -151,23 +151,32 @@ namespace assignment1
 			int firstIter = bIsleftBigger ? len : GetLength();
 
 			int restart = 0;
-			for (int i = 0; i < firstIter; i++)
 			{
-				*tmp = mStr[i];
-				tmp++;
-				*tmp = s[i];
-				tmp++;
-				restart = i;
+				for (int i = 0; i < firstIter; i++)
+				{
+					*tmp = mStr[i];
+					tmp++;
+					*tmp = s[i];
+					tmp++;
+					restart = i;
+				}
+
+				if (restart != 0)
+				{
+					restart++;
+				}
 			}
+			
 
 			for (int j = 0; j < diff; j++)
 			{
 				if (bIsleftBigger)
 				{
-					*tmp = mStr[restart + j + 1];
-				} 			else
+					*tmp = mStr[restart + j];
+				} 			
+				else
 				{
-					*tmp = s[restart + j + 1];
+					*tmp = s[restart + j];
 				}
 				tmp++;
 			}
