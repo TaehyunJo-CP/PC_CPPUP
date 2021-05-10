@@ -81,7 +81,7 @@ namespace assignment1
 
 	int MyString::IndexOf(const char* s)
 	{
-		unsigned int checkLen = (unsigned int)getCStringLength(s);
+		unsigned int checkLen = getCStringLength(s);
 
 		if (checkLen > GetLength())
 		{
@@ -136,7 +136,7 @@ namespace assignment1
 
 	void MyString::Interleave(const char* s)
 	{
-		unsigned int len = (unsigned int)getCStringLength(s);
+		unsigned int len = getCStringLength(s);
 		if (len == 0 || GetLength() == 0)
 		{
 			return;
@@ -161,7 +161,7 @@ namespace assignment1
 
 		for (int j = 0; j < diff; j++)
 		{
-			if(bIsleftBig)
+			if (bIsleftBig)
 			{
 				*tmp = mStr[restart + j + 1];
 			}
