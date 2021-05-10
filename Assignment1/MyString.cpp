@@ -137,46 +137,47 @@ namespace assignment1
 	void MyString::Interleave(const char* s)
 	{
 		unsigned int len = getCStringLength(s);
-		if (len == 0 || GetLength() == 0)
+		if (len == 0)
 		{
 			return;
 		}
-
-		char* newStr = new char[mLength + len + 1];
-		char* tmp = newStr;
-
-		bool bIsleftBig = GetLength() > len;
-		int diff = bIsleftBig ? GetLength() - len : len - GetLength();
-		int firstIter = bIsleftBig ? len : GetLength();
-
-		int restart = 0;
-		for (int i = 0; i < firstIter; i++)
+		else
 		{
-			*tmp = mStr[i];
-			tmp++;
-			*tmp = s[i];
-			tmp++;
-			restart = i;
-		}
+			char* newStr = new char[mLength + len + 1];
+			char* tmp = newStr;
 
-		for (int j = 0; j < diff; j++)
-		{
-			if (bIsleftBig)
+			bool bIsleftBigger = GetLength() > len;
+			int diff = bIsleftBigger ? GetLength() - len : len - GetLength();
+			int firstIter = bIsleftBigger ? len : GetLength();
+
+			int restart = 0;
+			for (int i = 0; i < firstIter; i++)
 			{
-				*tmp = mStr[restart + j + 1];
+				*tmp = mStr[i];
+				tmp++;
+				*tmp = s[i];
+				tmp++;
+				restart = i;
 			}
-			else
+
+			for (int j = 0; j < diff; j++)
 			{
-				*tmp = s[restart + j + 1];
+				if (bIsleftBigger)
+				{
+					*tmp = mStr[restart + j + 1];
+				} 			else
+				{
+					*tmp = s[restart + j + 1];
+				}
+				tmp++;
 			}
-			tmp++;
+
+			*tmp = '\0';
+
+			delete[] mStr;
+			mStr = newStr;
+			mLength += len;
 		}
-
-		*tmp = '\0';
-
-		delete[] mStr;
-		mStr = newStr;
-		mLength += len;
 	}
 
 	bool MyString::RemoveAt(unsigned int i)

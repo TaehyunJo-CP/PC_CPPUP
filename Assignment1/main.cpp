@@ -307,6 +307,10 @@ int main()
 	s23.Interleave("");
 	assert(s23 == "abcdefg");
 
+	MyString s24("");
+	s24.Interleave("");
+	assert(s24 == "");
+
 	test();
 
 	cout << "Done!" << endl;
