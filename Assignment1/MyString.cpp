@@ -108,7 +108,7 @@ namespace assignment1
 
 	int MyString::LastIndexOf(const char* s)
 	{
-		int checkLen = getCStringLength(s);
+		unsigned int checkLen = getCStringLength(s);
 
 		int targetIdx = -1;
 		if (checkLen > GetLength())
@@ -119,7 +119,7 @@ namespace assignment1
 		for (unsigned int i = 0; i < this->GetLength() - checkLen + 1; i++)
 		{
 			bool bIsMatch = true;
-			for (int j = 0; j < checkLen; j++)
+			for (unsigned int j = 0; j < checkLen; j++)
 			{
 				if (this->mStr[i + j] != s[j])
 				{
@@ -137,7 +137,7 @@ namespace assignment1
 	void MyString::Interleave(const char* s)
 	{
 		unsigned int len = (unsigned int)getCStringLength(s);
-		if (len == 0)
+		if (len == 0 || GetLength() == 0)
 		{
 			return;
 		}
@@ -346,7 +346,7 @@ namespace assignment1
 	unsigned int MyString::getCStringLength(const char* s) const
 	{   
 		const char* tmp = s;
-		int len = 0;
+		unsigned int len = 0;
 		while (*tmp != '\0')
 		{
 			len++;
