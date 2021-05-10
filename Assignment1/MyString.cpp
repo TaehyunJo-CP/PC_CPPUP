@@ -83,6 +83,11 @@ namespace assignment1
 	{
 		unsigned int checkLen = (unsigned int)getCStringLength(s);
 
+		if (checkLen > GetLength())
+		{
+			return -1;
+		}
+
 		for (unsigned int i = 0; i < this->GetLength() - checkLen + 1; i++)
 		{
 			bool bIsMatch = true;
@@ -106,6 +111,10 @@ namespace assignment1
 		int checkLen = getCStringLength(s);
 
 		int targetIdx = -1;
+		if (checkLen > GetLength())
+		{
+			return targetIdx;
+		}
 
 		for (unsigned int i = 0; i < this->GetLength() - checkLen + 1; i++)
 		{
@@ -299,7 +308,7 @@ namespace assignment1
 		}
 
 		char* newStr = new char[rhs.GetLength() + 1];
-		for (int i = 0; i < rhs.GetLength() + 1; i++)
+		for (unsigned int i = 0; i < rhs.GetLength() + 1; i++)
 		{
 			newStr[i] = rhs.GetCString()[i];
 		}
@@ -307,6 +316,8 @@ namespace assignment1
 		delete[] mStr;
 		mStr = newStr;
 		mLength = rhs.GetLength();
+
+		return *this;
 	}
 
 	void MyString::ToLower()

@@ -301,7 +301,11 @@ int main()
 
 	MyString s22("abcdefg");
 	s22.Interleave("1234");
-	assert("a1b2c3d4efg");
+	assert(s22 == "a1b2c3d4efg");
+
+	MyString s23("abcdefg");
+	s23.Interleave("");
+	assert(s23 == "abcdefg");
 
 	test();
 
