@@ -39,7 +39,7 @@ namespace lab2
 
 	void PrintMaxFloat(std::istream& in, std::ostream& out)
 	{
-		float maxNum = FLT_MIN;
+		float maxNum = -FLT_MAX;
 
 		while (true)
 		{
