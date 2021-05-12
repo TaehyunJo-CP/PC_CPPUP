@@ -64,7 +64,7 @@ namespace lab2
 				maxNum = num;
 			}
 
-			cout << "     " << showpos << setw(15) << internal << fixed << setprecision(3) << num << endl;
+			out << "     " << showpos << setw(15) << internal << fixed << setprecision(3) << num << endl;
 
 			if (in.eof())
 			{
@@ -72,6 +72,6 @@ namespace lab2
 			}
 		}
 
-		cout << "max: " << showpos << setw(15) << internal << fixed << setprecision(3) << maxNum << endl;
+		out << "max: " << showpos << setw(15) << internal << fixed << setprecision(3) << maxNum << endl;
 	}
 }
