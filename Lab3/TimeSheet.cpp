@@ -13,8 +13,8 @@ namespace lab3
 	}
 
 	TimeSheet::TimeSheet(const TimeSheet& other)
-		:mMaxEntries(other.mMaxEntries)
-		,mCountEntries(other.mCountEntries)
+		: mMaxEntries(other.mMaxEntries)
+		, mCountEntries(other.mCountEntries)
 	{
 		mName = other.GetName();
 		mTimes = new int[mMaxEntries];
@@ -56,7 +56,7 @@ namespace lab3
 
 	TimeSheet& TimeSheet::operator=(const TimeSheet& other)
 	{
-		if(&other == this)
+		if (&other == this)
 		{
 			return *this;
 		}
