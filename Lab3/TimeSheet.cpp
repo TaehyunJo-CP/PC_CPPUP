@@ -13,7 +13,8 @@ namespace lab3
 	}
 
 	TimeSheet::TimeSheet(const TimeSheet& other)
-		:mMaxEntries(other.mMaxEntries), mCountEntries(other.mCountEntries)
+		:mMaxEntries(other.mMaxEntries)
+		,mCountEntries(other.mCountEntries)
 	{
 		mName = other.GetName();
 		mTimes = new int[mMaxEntries];
@@ -55,6 +56,11 @@ namespace lab3
 
 	TimeSheet& TimeSheet::operator=(const TimeSheet& other)
 	{
+		if(&other == this)
+		{
+			return *this;
+		}
+
 		mName = other.GetName();
 		mMaxEntries = other.mMaxEntries;
 		mCountEntries = other.mCountEntries;
@@ -69,6 +75,10 @@ namespace lab3
 	{
 		float sum = static_cast<float>(GetTotalTime());
 		float count = static_cast<float>(mCountEntries);
+		if (count == 0.0f)
+		{
+			return 0.0f;
+		}
 		return sum / count;
 	}
 
