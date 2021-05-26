@@ -21,7 +21,7 @@ namespace lab4
 		const Point* operator[](unsigned int i) const;
 
 	private:
-		const unsigned int mMaxPointCount = 10;
+		unsigned int mMaxPointCount = 10;
 		unsigned int mPointCount = 0;
 
 		const Point* mPoints[10];

@@ -6,7 +6,7 @@ namespace lab4
 {
 	PolyLine::PolyLine()
 	{
-		for(unsigned int i = 0 ; i < this->mMaxPointCount; i++)
+		for (unsigned int i = 0 ; i < this->mMaxPointCount; i++)
 		{
 			(this->mPoints)[i] = nullptr;
 		}
@@ -58,7 +58,7 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
-		if (this->mPointCount < this->mMaxPointCount)
+		if (this->mPointCount < this->mMaxPointCount && point != nullptr)
 		{
 			mPoints[this->mPointCount] = point;
 			this->mPointCount++;
@@ -70,11 +70,11 @@ namespace lab4
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
-		if (this->mPointCount > i)
+		if (this->mPointCount > i && i >= 0)
 		{
 			delete mPoints[i];
 
-			for(unsigned int j = i; j < this->mPointCount - 1; j++)
+			for (unsigned int j = i; j < this->mPointCount - 1; j++)
 			{
 				mPoints[j] = mPoints[j + 1];
 			}
@@ -96,7 +96,7 @@ namespace lab4
 			float maxX = 0.0f;
 			float maxY = 0.0f;
 
-			for(unsigned int i = 0; i < this->mPointCount; i++)
+			for (unsigned int i = 0; i < this->mPointCount; i++)
 			{
 				const Point* tmp = mPoints[i];
 				float thisX = tmp->GetX();
