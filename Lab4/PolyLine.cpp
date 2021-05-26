@@ -14,6 +14,11 @@ namespace lab4
 
 	PolyLine::PolyLine(const PolyLine& other)
 	{
+		for (unsigned int i = 0; i < this->mMaxPointCount; i++)
+		{
+			(this->mPoints)[i] = nullptr;
+		}
+
 		this->mPointCount = other.mPointCount;
 
 		for (unsigned int i = 0; i < this->mPointCount; i++)
@@ -33,6 +38,11 @@ namespace lab4
 
 	PolyLine& PolyLine::operator=(const PolyLine& other)
 	{
+		for (unsigned int i = 0; i < this->mMaxPointCount; i++)
+		{
+			(this->mPoints)[i] = nullptr;
+		}
+
 		this->mPointCount = other.mPointCount;
 
 		for (unsigned int i = 0; i < this->mPointCount; i++)
