@@ -18,7 +18,7 @@ namespace lab5
 		unsigned int GetFencePrice(eFenceType fenceType) const;
 
 	private:
-		unsigned int width;
-		unsigned int height;
+		unsigned int mWidth;
+		unsigned int mHeight;
 	};
 }

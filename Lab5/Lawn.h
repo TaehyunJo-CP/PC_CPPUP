@@ -20,6 +20,6 @@ namespace lab5
 		static const double ROLL_GRASS_AREA;
 		static const double PI;
 		static const double FENCE_WIDTH;
-
+		
 	};
 }
