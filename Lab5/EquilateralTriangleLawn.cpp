@@ -15,7 +15,7 @@ namespace lab5
 	unsigned int EquilateralTriangleLawn::GetArea() const
 	{
 		double l = static_cast<double>(this->length);
-		double area = round(sqrt(3) / 4.0 * ( l * l ));
+		double area = round(sqrt(3) / 4.0 * (l * l));
 		return static_cast<unsigned int>(area);
 	}
 	unsigned int EquilateralTriangleLawn::GetPerimeter() const
