@@ -6,19 +6,19 @@ namespace lab5
 {
 	RectangleLawn::RectangleLawn(unsigned int width, unsigned int height)
 	{
-		this->width = width;
-		this->height = height;
+		this->mWidth = width;
+		this->mHeight = height;
 	}
 	RectangleLawn::~RectangleLawn()
 	{
 	}
 	unsigned int RectangleLawn::GetArea() const
 	{
-		return this->width * this->height;
+		return this->mWidth * this->mHeight;
 	}
 	unsigned int RectangleLawn::GetPerimeter() const
 	{
-		return (this->width + this->height) * 2;
+		return (this->mWidth + this->mHeight) * 2;
 	}
 	unsigned int RectangleLawn::GetMinimumFencesCount() const
 	{

@@ -5,7 +5,7 @@ namespace lab5
 {
 	EquilateralTriangleLawn::EquilateralTriangleLawn(unsigned int length)
 	{
-		this->length = length;
+		this->mLength = length;
 	}
 
 	EquilateralTriangleLawn::~EquilateralTriangleLawn()
@@ -14,13 +14,13 @@ namespace lab5
 
 	unsigned int EquilateralTriangleLawn::GetArea() const
 	{
-		double l = static_cast<double>(this->length);
+		double l = static_cast<double>(this->mLength);
 		double area = round(sqrt(3) / 4.0 * (l * l));
 		return static_cast<unsigned int>(area);
 	}
 	unsigned int EquilateralTriangleLawn::GetPerimeter() const
 	{
-		return this->length * 3;
+		return this->mLength * 3;
 	}
 	unsigned int EquilateralTriangleLawn::GetMinimumFencesCount() const
 	{
@@ -37,7 +37,8 @@ namespace lab5
 		if (fenceType == RED_CEDAR)
 		{
 			fencePricePerMeter = 600;
-		} else if (fenceType == SPRUCE)
+		} 
+		else if (fenceType == SPRUCE)
 		{
 			fencePricePerMeter = 700;
 		}

@@ -14,6 +14,6 @@ namespace lab5
 		unsigned int GetArea() const;
 
 	private:
-		unsigned int radius;
+		unsigned int mRadius;
 	};
 }
