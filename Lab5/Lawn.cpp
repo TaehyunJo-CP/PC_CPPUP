@@ -1,5 +1,5 @@
 #include "Lawn.h"
-#include <cmath>;
+#include <cmath>
 
 namespace lab5
 {

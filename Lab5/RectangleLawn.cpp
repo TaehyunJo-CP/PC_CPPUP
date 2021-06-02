@@ -1,6 +1,6 @@
 #include "RectangleLawn.h"
 #include "eFenceType.h"
-#include <cmath>;
+#include <cmath>
 
 namespace lab5
 {
