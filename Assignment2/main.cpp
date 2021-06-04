@@ -1,4 +1,6 @@
 #include <cassert>
+#include <iostream>
+#include <iomanip>
 
 #include "Vehicle.h"
 #include "Airplane.h"
@@ -6,128 +8,56 @@
 #include "Boatplane.h"
 #include "Motorcycle.h"
 #include "Sedan.h"
-#include "Trailer.h"
 #include "UBoat.h"
+#include "Trailer.h"
 #include "DeusExMachina.h"
 #include "Person.h"
 
-#include <iostream>
+
+#define STR(name) #name
 
 using namespace assignment2;
+using namespace std;
 
 int main()
 {
-	Person* p = new Person("Bob", 85);
+	Sedan* s = new Sedan();
 
-	assert(p->GetName() == std::string("Bob"));
-	assert(p->GetWeight() == 85);
+	s->AddPassenger(new Person("t", 1));
+	s->AddPassenger(new Person("t", 2));
+	s->AddPassenger(new Person("t", 3));
+	s->AddPassenger(new Person("t", 4));
 
-	Person* p2 = new Person("James", 75);
-	Person* p3 = new Person("Tina", 52);
+	s->AddTrailer(new Trailer(40));
+	delete s;
 
-	Person* p4 = new Person("Peter", 78);
-	Person* p5 = new Person("Jane", 48);
-	Person* p6 = new Person("Steve", 88);
+	Airplane* a = new Airplane(20);
 
-	Airplane a(5);
-	a.AddPassenger(p);
-	a.AddPassenger(p2);
-	a.AddPassenger(p3);
+	a->AddPassenger(new Person("a", 1));
+	a->AddPassenger(new Person("a", 2));
+	a->AddPassenger(new Person("a", 3));
+	a->AddPassenger(new Person("a", 4));
+	a->AddPassenger(new Person("a", 5));
 
-	assert(a.GetMaxPassengersCount() == 5);
-	assert(a.GetPassengersCount() == 3);
-	assert(a.GetPassenger(1) == p2);
-	std::cout << a.GetFlySpeed() << std::endl;
-	std::cout << a.GetDriveSpeed() << std::endl;
-	assert(a.GetFlySpeed() == 648);
-	assert(a.GetDriveSpeed() == 59);
-	assert(a.GetMaxSpeed() == 648);
+	Boat* b = new Boat(10);
 
-	Boat b(5);
-	b.AddPassenger(p4);
-	b.AddPassenger(p5);
-	b.AddPassenger(p6);
+	b->AddPassenger(new Person("b", 1));
+	b->AddPassenger(new Person("b", 2));
+	b->AddPassenger(new Person("b", 3));
+	b->AddPassenger(new Person("b", 4));
 
-	Boatplane bp = a + b;
+	Boatplane* c = new Boatplane(50);
+	c->AddPassenger(new Person("c", 1));
+	c->AddPassenger(new Person("c", 2));
+	c->AddPassenger(new Person("c", 3));
+	c->AddPassenger(new Person("c", 4));
 
-	assert(bp.GetPassengersCount() == 6);
-	assert(bp.GetMaxPassengersCount() == 10);
+	*c = *a + *b;
 
-	assert(a.GetPassengersCount() == 0);
-	assert(b.GetPassengersCount() == 0);
+	delete a;
+	delete b;
+	delete c;
 
-	DeusExMachina* deusExMachina1 = DeusExMachina::GetInstance();
-	DeusExMachina* deusExMachina2 = DeusExMachina::GetInstance();
 
-	bool bSame = deusExMachina1 == deusExMachina2;
-	assert(bSame);
-
-	Airplane* airplane = new Airplane(5);
-	Boat* boat = new Boat(5);
-	Boatplane* boatplane = new Boatplane(5);
-	Motorcycle* motorcycle = new Motorcycle();
-	Sedan* sedan = new Sedan();
-	Sedan* sedan2 = new Sedan();
-	UBoat* uboat = new UBoat();
-
-	bool bAdded = sedan2->AddTrailer(new Trailer(50));
-	assert(bAdded);
-
-	bAdded = sedan2->AddTrailer(new Trailer(60));
-	assert(!bAdded);
-
-	bAdded = deusExMachina1->AddVehicle(airplane);
-	assert(bAdded);
-
-	deusExMachina1->AddVehicle(boat);
-	deusExMachina1->AddVehicle(boatplane);
-	deusExMachina1->AddVehicle(motorcycle);
-	deusExMachina1->AddVehicle(sedan);
-	deusExMachina1->AddVehicle(sedan2);
-	deusExMachina1->AddVehicle(uboat);
-	deusExMachina1->AddVehicle(new Airplane(5));
-	deusExMachina1->AddVehicle(new Airplane(5));
-	deusExMachina1->AddVehicle(new Airplane(5));
-
-	bAdded = deusExMachina1->AddVehicle(new Airplane(5));
-
-	assert(!bAdded);
-
-	deusExMachina1->RemoveVehicle(9);
-	deusExMachina1->RemoveVehicle(8);
-	bool bRemoved = deusExMachina1->RemoveVehicle(7);
-	assert(bRemoved);
-
-	bRemoved = deusExMachina1->RemoveVehicle(9);
-	assert(!bRemoved);
-
-	deusExMachina1->Travel(); // 모든 운송 수단이 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan, UBoat가 이동
-	deusExMachina1->Travel(); // Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // UBoat만 빼고 전부 이동
-	deusExMachina1->Travel(); // 어떤 운송 수단도 움직이지 않음
-	deusExMachina1->Travel(); // Boat, Motorcycle, 트레일러 안 달린 Sedan, UBoat가 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan, UBoat가 이동
-	deusExMachina1->Travel(); // Airplane, Boatplane, Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // 트레일러 달린 Sedan만 이동
-
-	assert(deusExMachina1->GetFurthestTravelled() == boat);
-
-	Airplane* a100 = new Airplane(10);
-	Airplane* a101 = new Airplane(5);
-
-	Person *p99 = new Person("test2", 23);
-	a101->AddPassenger(p99);
-
-	Person *p100 = new Person("test1", 1233);
-	a100->AddPassenger(p100);
-	a100->AddPassenger(new Person("test2", 1234));
-	a100->AddPassenger(new Person("test3", 1235));
-	
-	*a100 = *a101;
-
-	return 0;
+	std::cout << "Done" << std::endl;
 }

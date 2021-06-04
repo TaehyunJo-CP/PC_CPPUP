@@ -21,6 +21,7 @@ namespace assignment2
 	Boatplane::~Boatplane()
 	{
 	}
+
 	unsigned int Boatplane::GetMaxSpeed() const
 	{
 		return std::max(this->GetFlySpeed(), this->GetSailSpeed());

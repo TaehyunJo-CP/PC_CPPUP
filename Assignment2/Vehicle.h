@@ -12,7 +12,7 @@ namespace assignment2
 
 		virtual ~Vehicle();
 
-		Vehicle& operator=(const Vehicle& vehicle);
+		virtual Vehicle& operator=(const Vehicle& vehicle);
 
 		virtual unsigned int GetMaxSpeed() const = 0;
 

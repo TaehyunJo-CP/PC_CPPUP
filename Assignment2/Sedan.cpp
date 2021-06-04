@@ -14,6 +14,7 @@ namespace assignment2
 		{
 			delete this->mTrailer;
 		}
+
 	}
 
 	Sedan& Sedan::operator=(const Sedan& sedan)
