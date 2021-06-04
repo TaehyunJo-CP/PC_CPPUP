@@ -5,7 +5,15 @@ namespace assignment2
 	Sedan::Sedan()
 		: Vehicle(4)
 	{
-		
+	}
+
+	Sedan::Sedan(const Sedan& sedan)
+		: Vehicle(sedan)
+	{
+		if (sedan.mTrailer != nullptr)
+		{
+			this->mTrailer = new Trailer(sedan.mTrailer->GetWeight());
+		}
 	}
 
 	Sedan::~Sedan()

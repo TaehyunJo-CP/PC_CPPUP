@@ -38,6 +38,8 @@ int main()
 	s->AddTrailer(new Trailer(40));
 	s->RemoveTrailer();
 
+	Sedan* s2 = new Sedan(*s);
+
 	Airplane* a = new Airplane(20);
 	Airplane* a2 = new Airplane(30);
 
@@ -94,6 +96,7 @@ int main()
 	delete u;
 	delete a2;
 	delete a3;
+	delete s2;
 
 
 	std::cout << "Done" << std::endl;
