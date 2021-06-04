@@ -1,3 +1,10 @@
+#include <iostream>
+#include <Windows.h>
+
+#define _CRTDBG_MAP_ALLOC
+#include <cstdlib>
+#include <crtdbg.h>
+
 #include <cassert>
 #include <iostream>
 #include <iomanip>
@@ -29,15 +36,19 @@ int main()
 	s->AddPassenger(new Person("t", 4));
 
 	s->AddTrailer(new Trailer(40));
-	delete s;
+	s->RemoveTrailer();
 
 	Airplane* a = new Airplane(20);
+	Airplane* a2 = new Airplane(30);
 
 	a->AddPassenger(new Person("a", 1));
 	a->AddPassenger(new Person("a", 2));
 	a->AddPassenger(new Person("a", 3));
 	a->AddPassenger(new Person("a", 4));
 	a->AddPassenger(new Person("a", 5));
+
+	*a2 = *a;
+	Airplane* a3 = new Airplane(*a);
 
 	Boat* b = new Boat(10);
 
@@ -46,18 +57,48 @@ int main()
 	b->AddPassenger(new Person("b", 3));
 	b->AddPassenger(new Person("b", 4));
 
-	Boatplane* c = new Boatplane(50);
-	c->AddPassenger(new Person("c", 1));
-	c->AddPassenger(new Person("c", 2));
-	c->AddPassenger(new Person("c", 3));
-	c->AddPassenger(new Person("c", 4));
+	Boatplane* c = new Boatplane(100);
+
+	for(int i = 0; i < 100; i++)
+	{
+		c->AddPassenger(new Person("c", 1));
+	}
+
+	for (int i = 0; i < 150; i++)
+	{
+		c->RemovePassenger(0);
+	}
 
 	*c = *a + *b;
+
+	Motorcycle* m = new Motorcycle();
+	m->AddPassenger(new Person("d", 1));
+	m->AddPassenger(new Person("d", 2));
+	m->RemovePassenger(1);
+	m->RemovePassenger(0);
+	m->RemovePassenger(0);
+
+	UBoat* u = new UBoat();
+	u->AddPassenger(new Person("e", 1));
+	u->AddPassenger(new Person("e", 2));
+	u->AddPassenger(new Person("e", 3));
+
+
+	
 
 	delete a;
 	delete b;
 	delete c;
+	delete m;
+	delete s;
+	delete u;
+	delete a2;
+	delete a3;
 
 
 	std::cout << "Done" << std::endl;
+
+	_CrtDumpMemoryLeaks();
 }
+
+

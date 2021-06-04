@@ -10,7 +10,7 @@ namespace assignment2
 
 	Sedan::~Sedan()
 	{
-		if(this->mTrailer != nullptr)
+		if (this->mTrailer != nullptr)
 		{
 			delete this->mTrailer;
 		}

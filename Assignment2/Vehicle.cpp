@@ -167,6 +167,6 @@ namespace assignment2
 		{
 			return (this->mPeople)[i];
 		}
-		return NULL;
+		return nullptr;
 	}
 }
