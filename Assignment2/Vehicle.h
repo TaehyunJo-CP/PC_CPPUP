@@ -12,6 +12,8 @@ namespace assignment2
 
 		virtual ~Vehicle();
 
+		Vehicle& operator=(const Vehicle& vehicle);
+
 		virtual unsigned int GetMaxSpeed() const = 0;
 
 		bool AddPassenger(const Person* person);
@@ -29,7 +31,7 @@ namespace assignment2
 		unsigned int GetMoveDistance() const;
 	
 	protected:
-		virtual double GetTotalPassengersWeight() const;
+		virtual double getTotalPassengersWeight() const;
 
 		unsigned int mMaxPassengerCount = 0;
 		unsigned int mCurPassengerCount = 0;

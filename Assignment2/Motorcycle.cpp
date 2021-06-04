@@ -3,7 +3,7 @@
 namespace assignment2
 {
 	Motorcycle::Motorcycle()
-	: Vehicle(2)
+	:Vehicle(2)
 	{
 	}
 
@@ -11,9 +11,15 @@ namespace assignment2
 	{
 	}
 
+	Motorcycle& Motorcycle::operator=(const Motorcycle& motorcycle)
+	{
+		Vehicle::operator=(motorcycle);
+		return *this;
+	}
+
 	unsigned int Motorcycle::GetMaxSpeed() const
 	{
-		double first = round(pow(-(this->GetTotalPassengersWeight() / 15), 3) + 2 * this->GetTotalPassengersWeight() + 400);
+		double first = round(pow(-(this->getTotalPassengersWeight() / 15), 3) + 2 * this->getTotalPassengersWeight() + 400);
 		double second = 0;
 		return static_cast<unsigned int>(std::max(first, second));
 	}

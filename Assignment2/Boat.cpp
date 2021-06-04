@@ -4,12 +4,18 @@
 namespace assignment2
 {
 	Boat::Boat(unsigned int maxPassengersCount)
-	: Vehicle(maxPassengersCount)
+	:Vehicle(maxPassengersCount)
 	{
 	}
 
 	Boat::~Boat()
 	{
+	}
+
+	Boat& Boat::operator=(const Boat& airplane)
+	{
+		Vehicle::operator=(airplane);
+		return *this;
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)
@@ -35,7 +41,7 @@ namespace assignment2
 	}
 	unsigned int Boat::GetSailSpeed() const
 	{
-		double first = round(800 - 10 * this->GetTotalPassengersWeight());
+		double first = round(800 - 10 * this->getTotalPassengersWeight());
 		double second = 20;
 
 		return static_cast<unsigned int>(std::max(first, second));

@@ -3,12 +3,18 @@
 namespace assignment2
 {
 	Airplane::Airplane(unsigned int maxPassengersCount)
-	: Vehicle(maxPassengersCount)
+	:Vehicle(maxPassengersCount)
 	{
 	}
 
 	Airplane::~Airplane()
 	{
+	}
+
+	Airplane& Airplane::operator=(const Airplane& airplane)
+	{
+		Vehicle::operator=(airplane);
+		return *this;
 	}
 
 	Boatplane Airplane::operator+(Boat& boat)
@@ -34,13 +40,13 @@ namespace assignment2
 
 	unsigned int Airplane::GetDriveSpeed() const
 	{
-		return static_cast<unsigned int>(round(4 * exp((-this->GetTotalPassengersWeight() + 400) / 70)));
+		return static_cast<unsigned int>(round(4 * exp((-this->getTotalPassengersWeight() + 400) / 70)));
 		
 	}
 
 	unsigned int Airplane::GetFlySpeed() const
 	{
-		return static_cast<unsigned int>(round(200 * exp((-this->GetTotalPassengersWeight() + 800) / 500)));
+		return static_cast<unsigned int>(round(200 * exp((-this->getTotalPassengersWeight() + 800) / 500)));
 	}
 
 	unsigned int Airplane::GetMaxSpeed() const

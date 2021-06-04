@@ -3,13 +3,35 @@
 namespace assignment2
 {
 	Sedan::Sedan()
-	: Vehicle(4)
+	:Vehicle(4)
 	{
 		
 	}
 
 	Sedan::~Sedan()
 	{
+	}
+
+	Sedan& Sedan::operator=(const Sedan& sedan)
+	{
+		if (&sedan == this)
+		{
+			return *this;
+		}
+
+		Vehicle::operator=(sedan);
+
+		if (this->mTrailer == nullptr)
+		{
+			this->mTrailer = sedan.mTrailer;	
+		}
+		else
+		{
+			delete this->mTrailer;
+			this->mTrailer = sedan.mTrailer;
+		}
+
+		return *this;
 	}
 
 	bool Sedan::AddTrailer(const Trailer* trailer)
@@ -61,7 +83,7 @@ namespace assignment2
 	}
 	unsigned int Sedan::GetDriveSpeed() const
 	{
-		double x = this->GetTotalWeightsWithTrailer();
+		double x = this->getTotalWeightsWithTrailer();
 
 		if (x > 350)
 		{
@@ -84,15 +106,15 @@ namespace assignment2
 			return 480;
 		}
 	}
-	double Sedan::GetTotalWeightsWithTrailer() const
+	double Sedan::getTotalWeightsWithTrailer() const
 	{
 		if (this->mTrailer == nullptr)
 		{
-			return this->GetTotalPassengersWeight();
+			return this->getTotalPassengersWeight();
 		}
 		else
 		{
-			return this->GetTotalPassengersWeight() + static_cast<double>((this->mTrailer)->GetWeight());
+			return this->getTotalPassengersWeight() + static_cast<double>((this->mTrailer)->GetWeight());
 		}
 		
 	}

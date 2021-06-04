@@ -14,6 +14,8 @@ namespace assignment2
 		Boatplane(unsigned int maxPassengersCount);
 		Boatplane(const Boatplane& boatplane);
 
+		Boatplane& operator=(const Boatplane& airplane);
+
 		virtual ~Boatplane();
 
 		// Vehicle을(를) 통해 상속됨

@@ -31,10 +31,37 @@ namespace assignment2
 
 	Vehicle::~Vehicle()
 	{
-		for(unsigned int i = 0; i < this->mCurPassengerCount; i++)
+		for (unsigned int i = 0; i < this->mCurPassengerCount; i++)
 		{
 			delete (this->mPeople)[i];
 		}
+	}
+
+	Vehicle& Vehicle::operator=(const Vehicle& vehicle)
+	{
+		if (&vehicle == this)
+		{
+			return *this;
+		}
+
+		for (unsigned int i = 0; i < this->mCurPassengerCount; i++)
+		{
+			delete (this->mPeople)[i];
+			(this->mPeople)[i] = nullptr;
+		}
+		
+		for (unsigned int i = 0; i < vehicle.mCurPassengerCount; i++)
+		{
+			(this->mPeople)[i] = vehicle.mPeople[i];
+		}
+
+		this->mMaxPassengerCount = vehicle.mMaxPassengerCount;
+		this->mCurPassengerCount = vehicle.mCurPassengerCount;
+
+		this->mMoveTurn = vehicle.mMoveTurn;
+		this->mMoveDistance = vehicle.mMoveDistance;
+
+		return *this;
 	}
 
 	bool Vehicle::AddPassenger(const Person* person)
@@ -47,7 +74,7 @@ namespace assignment2
 			}
 		}
 
-		if(this->mCurPassengerCount < this->mMaxPassengerCount && person != nullptr)
+		if (this->mCurPassengerCount < this->mMaxPassengerCount && person != nullptr)
 		{
 			this->mPeople[this->mCurPassengerCount] = person;
 			this->mCurPassengerCount++;
@@ -85,7 +112,7 @@ namespace assignment2
 		return this->mMaxPassengerCount;
 	}
 
-	double Vehicle::GetTotalPassengersWeight() const
+	double Vehicle::getTotalPassengersWeight() const
 	{
 		unsigned int sumWeight = 0;
 		for (unsigned int i = 0; i < this->mCurPassengerCount; i++)

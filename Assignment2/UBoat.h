@@ -11,6 +11,7 @@ namespace assignment2
 	public:
 		UBoat();
 		~UBoat();
+		UBoat& operator=(const UBoat& uboat);
 
 		// Vehicle을(를) 통해 상속됨
 		virtual unsigned int GetMaxSpeed() const override;

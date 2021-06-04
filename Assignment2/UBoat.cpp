@@ -5,12 +5,17 @@
 namespace assignment2
 {
 	UBoat::UBoat()
-	: Vehicle(50)
+	:Vehicle(50)
 	{
 	}
 
 	UBoat::~UBoat()
 	{
+	}
+	UBoat& UBoat::operator=(const UBoat& uboat)
+	{
+		Vehicle::operator=(uboat);
+		return *this;
 	}
 	unsigned int UBoat::GetMaxSpeed() const
 	{
@@ -29,14 +34,14 @@ namespace assignment2
 	
 	unsigned int UBoat::GetSailSpeed() const
 	{
-		double x = this->GetTotalPassengersWeight();
+		double x = this->getTotalPassengersWeight();
 		double r = round(500 * log((x + 150) / 150) + 30);
 
 		return static_cast<unsigned int>(r);
 	}
 	unsigned int UBoat::GetDiveSpeed() const
 	{
-		double x = this->GetTotalPassengersWeight();
+		double x = this->getTotalPassengersWeight();
 		double first = round((550 - x / 10));
 		double second = 200;
 
