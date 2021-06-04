@@ -1,0 +1,48 @@
+#include "Airplane.h"
+
+namespace assignment2
+{
+	Airplane::Airplane(unsigned int maxPassengersCount)
+	: Vehicle(maxPassengersCount)
+	{
+	}
+
+	Airplane::~Airplane()
+	{
+	}
+
+	Boatplane Airplane::operator+(Boat& boat)
+	{
+		Boatplane bp(this->GetMaxPassengersCount() + boat.GetMaxPassengersCount());
+
+		for (unsigned int i = 0; i < this->GetPassengersCount(); i++)
+		{
+			bp.AddPassenger(this->GetPassenger(i));
+		}
+
+		this->TakeOffAllPassengers();
+
+		for (unsigned int i = 0; i < boat.GetPassengersCount(); i++)
+		{
+			bp.AddPassenger(boat.GetPassenger(i));
+		}
+
+		boat.TakeOffAllPassengers();
+
+		return bp;
+	}
+	unsigned int Airplane::GetDriveSpeed() const
+	{
+		return static_cast<unsigned int>(round(4 * exp((-this->GetTotalPassengersWeight() + 400) / 70)));
+		
+	}
+	unsigned int Airplane::GetFlySpeed() const
+	{
+		return static_cast<unsigned int>(round(200 * exp((-this->GetTotalPassengersWeight() + 800) / 500)));
+	}
+
+	unsigned int Airplane::GetMaxSpeed() const
+	{
+		return std::max(this->GetDriveSpeed(), this->GetFlySpeed());
+	}
+}
