@@ -14,7 +14,7 @@ namespace assignment2
 		const Vehicle* GetFurthestTravelled() const;
 
 	private:
-		static DeusExMachina* instance;
+		static DeusExMachina* mInstance;
 		DeusExMachina();
 		~DeusExMachina();
 

@@ -2,7 +2,7 @@
 
 namespace assignment2
 {
-	DeusExMachina* DeusExMachina::instance = nullptr;
+	DeusExMachina* DeusExMachina::mInstance = nullptr;
 
 	DeusExMachina::DeusExMachina()
 	{
@@ -18,15 +18,17 @@ namespace assignment2
 		{
 			delete (this->mVehicles)[i];
 		}
+
+		delete DeusExMachina::mInstance;
 	}
 
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
-		if (DeusExMachina::instance == nullptr)
+		if (DeusExMachina::mInstance == nullptr)
 		{
-			DeusExMachina::instance = new DeusExMachina();
+			DeusExMachina::mInstance = new DeusExMachina();
 		}
-		return DeusExMachina::instance;
+		return DeusExMachina::mInstance;
 	}
 
 	void DeusExMachina::Travel() const
