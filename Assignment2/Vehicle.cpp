@@ -52,7 +52,7 @@ namespace assignment2
 		
 		for (unsigned int i = 0; i < vehicle.mCurPassengerCount; i++)
 		{
-			(this->mPeople)[i] = vehicle.mPeople[i];
+			(this->mPeople)[i] = new Person(*(vehicle.mPeople[i]));
 		}
 
 		this->mMaxPassengerCount = vehicle.mMaxPassengerCount;

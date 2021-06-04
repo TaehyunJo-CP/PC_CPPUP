@@ -27,12 +27,12 @@ namespace assignment2
 
 		if (this->mTrailer == nullptr)
 		{
-			this->mTrailer = sedan.mTrailer;	
+			this->mTrailer = new Trailer(sedan.mTrailer->GetWeight());	
 		}
 		else
 		{
 			delete this->mTrailer;
-			this->mTrailer = sedan.mTrailer;
+			this->mTrailer = new Trailer(sedan.mTrailer->GetWeight());
 		}
 
 		return *this;

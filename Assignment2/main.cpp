@@ -119,6 +119,9 @@ int main()
 	Airplane* a100 = new Airplane(10);
 	Airplane* a101 = new Airplane(5);
 
+	Person *p99 = new Person("test2", 23);
+	a101->AddPassenger(p99);
+
 	Person *p100 = new Person("test1", 1233);
 	a100->AddPassenger(p100);
 	a100->AddPassenger(new Person("test2", 1234));
