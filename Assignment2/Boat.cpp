@@ -44,4 +44,12 @@ namespace assignment2
 	{
 		return this->GetSailSpeed();
 	}
+	unsigned int Boat::GetMoveInterval() const
+	{
+		return 2;
+	}
+	unsigned int Boat::GetRestInterval() const
+	{
+		return 1;
+	}
 }

@@ -16,6 +16,16 @@ namespace assignment2
 	{
 		return std::max(this->GetDiveSpeed(), this->GetSailSpeed());
 	}
+
+	unsigned int UBoat::GetMoveInterval() const
+	{
+		return 2;
+	}
+
+	unsigned int UBoat::GetRestInterval() const
+	{
+		return 4;
+	}
 	
 	unsigned int UBoat::GetSailSpeed() const
 	{

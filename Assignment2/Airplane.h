@@ -12,7 +12,7 @@ namespace assignment2
 {
 	class Boat;
 
-	class Airplane : public Vehicle, public IDrivable, public IFlyable
+	class Airplane: public Vehicle, public IDrivable, public IFlyable
 	{
 	public:
 		Airplane(unsigned int maxPassengersCount);
@@ -28,6 +28,8 @@ namespace assignment2
 
 		// Vehicle을(를) 통해 상속됨
 		unsigned int GetMaxSpeed() const;
+		unsigned int GetMoveInterval() const;
+		unsigned int GetRestInterval() const;
 
 	};
 }

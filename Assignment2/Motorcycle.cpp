@@ -18,6 +18,16 @@ namespace assignment2
 		return static_cast<unsigned int>(std::max(first, second));
 	}
 
+	unsigned int Motorcycle::GetMoveInterval() const
+	{
+		return 5;
+	}
+
+	unsigned int Motorcycle::GetRestInterval() const
+	{
+		return 1;
+	}
+
 	unsigned int Motorcycle::GetDriveSpeed() const
 	{
 		return this->GetMaxSpeed();

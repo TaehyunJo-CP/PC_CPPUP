@@ -31,11 +31,13 @@ namespace assignment2
 
 		return bp;
 	}
+
 	unsigned int Airplane::GetDriveSpeed() const
 	{
 		return static_cast<unsigned int>(round(4 * exp((-this->GetTotalPassengersWeight() + 400) / 70)));
 		
 	}
+
 	unsigned int Airplane::GetFlySpeed() const
 	{
 		return static_cast<unsigned int>(round(200 * exp((-this->GetTotalPassengersWeight() + 800) / 500)));
@@ -44,5 +46,14 @@ namespace assignment2
 	unsigned int Airplane::GetMaxSpeed() const
 	{
 		return std::max(this->GetDriveSpeed(), this->GetFlySpeed());
+	}
+
+	unsigned int Airplane::GetMoveInterval() const
+	{
+		return 1;
+	}
+	unsigned int Airplane::GetRestInterval() const
+	{
+		return 3;
 	}
 }

@@ -19,7 +19,7 @@ namespace assignment2
 
 		unsigned int mMaxVehicleCount = 10;
 		unsigned int mCurVehicleCount = 0;
-		const Vehicle* mVehicles[10];
+		Vehicle* mVehicles[10];
 
 	};
 }

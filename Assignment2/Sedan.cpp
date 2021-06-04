@@ -36,6 +36,29 @@ namespace assignment2
 	{
 		return this->GetDriveSpeed();
 	}
+	unsigned int Sedan::GetMoveInterval() const
+	{
+		if (this->mTrailer == nullptr)
+		{
+			return 5;
+		}
+		else
+		{
+			return 5;
+		}
+		
+	}
+	unsigned int Sedan::GetRestInterval() const
+	{
+		if (this->mTrailer == nullptr)
+		{
+			return 1;
+		} 		
+		else
+		{
+			return 2;
+		}
+	}
 	unsigned int Sedan::GetDriveSpeed() const
 	{
 		double x = this->GetTotalWeightsWithTrailer();
@@ -63,6 +86,14 @@ namespace assignment2
 	}
 	double Sedan::GetTotalWeightsWithTrailer() const
 	{
-		return this->GetTotalPassengersWeight() + static_cast<double>((this->mTrailer)->GetWeight());
+		if (this->mTrailer == nullptr)
+		{
+			return this->GetTotalPassengersWeight();
+		}
+		else
+		{
+			return this->GetTotalPassengersWeight() + static_cast<double>((this->mTrailer)->GetWeight());
+		}
+		
 	}
 }

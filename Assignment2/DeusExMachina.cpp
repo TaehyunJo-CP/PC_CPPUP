@@ -23,6 +23,10 @@ namespace assignment2
 
 	void DeusExMachina::Travel() const
 	{
+		for (unsigned int i = 0; i < this->mCurVehicleCount; i++)
+		{
+			(this->mVehicles)[i]->Travel();
+		}
 	}
 
 	bool DeusExMachina::AddVehicle(Vehicle* vehicle)
@@ -57,7 +61,29 @@ namespace assignment2
 
 	const Vehicle* DeusExMachina::GetFurthestTravelled() const
 	{
-		return NULL;
+		unsigned int maxDistance = 0;
+		Vehicle* vehiclePtr = nullptr;
+
+		for (unsigned int i = 0; i < this->mCurVehicleCount; i++)
+		{
+			unsigned int moveDistance = (this->mVehicles)[i]->GetMoveDistance();
+
+			if (i == 0)
+			{
+				maxDistance = moveDistance;
+				vehiclePtr = (this->mVehicles)[i];
+			}
+			else
+			{
+				if (maxDistance < moveDistance)
+				{
+					maxDistance = moveDistance;
+					vehiclePtr = (this->mVehicles)[i];
+				}
+			}
+		}
+
+		return vehiclePtr;
 	}
 
 

@@ -19,6 +19,14 @@ namespace assignment2
 	{
 		return std::max(this->GetFlySpeed(), this->GetSailSpeed());
 	}
+	unsigned int Boatplane::GetMoveInterval() const
+	{
+		return 1;
+	}
+	unsigned int Boatplane::GetRestInterval() const
+	{
+		return 3;
+	}
 	unsigned int Boatplane::GetFlySpeed() const
 	{
 		return static_cast<unsigned int>((150 * exp((-this->GetTotalPassengersWeight() + 500) / 300)));

@@ -23,7 +23,10 @@ namespace assignment2
 		void TakeOffAllPassengers();
 
 		void Travel();
-		unsigned int GetMoveDistance();
+
+		virtual unsigned int GetMoveInterval() const = 0;
+		virtual unsigned int GetRestInterval() const = 0;
+		unsigned int GetMoveDistance() const;
 	
 	protected:
 		virtual double GetTotalPassengersWeight() const;
@@ -33,7 +36,7 @@ namespace assignment2
 
 		const Person* mPeople[100];
 
-		unsigned int mMoveTrun = 0;
+		unsigned int mMoveTurn = 0;
 		unsigned int mMoveDistance = 0;
 	};
 }

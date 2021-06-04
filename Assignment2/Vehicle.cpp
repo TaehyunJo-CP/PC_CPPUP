@@ -106,6 +106,32 @@ namespace assignment2
 		this->mCurPassengerCount = 0;
 	}
 
+	void Vehicle::Travel()
+	{
+		unsigned int moveInterval = this->GetMoveInterval();
+		unsigned int restInvterval = this->GetRestInterval();
+
+		this->mMoveTurn = this->mMoveTurn % (moveInterval + restInvterval);
+
+		if (this->mMoveTurn < moveInterval)
+		{
+			this->mMoveDistance += this->GetMaxSpeed();
+		}
+		else if (this->mMoveTurn < (moveInterval + restInvterval))
+		{
+			this->mMoveDistance += 0;
+		}
+
+		this->mMoveTurn++;
+
+	}
+
+	unsigned int Vehicle::GetMoveDistance() const
+	{
+		return this->mMoveDistance;
+	}
+
+
 	const Person* Vehicle::GetPassenger(unsigned int i) const
 	{
 		if (i < this->mCurPassengerCount)
