@@ -12,6 +12,14 @@ namespace assignment2
 		}
 	}
 
+	DeusExMachina::~DeusExMachina()
+	{
+		for (unsigned int i = 0; i < this->mCurVehicleCount; i++)
+		{
+			delete (this->mVehicles)[i];
+		}
+	}
+
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
 		if (DeusExMachina::instance == nullptr)

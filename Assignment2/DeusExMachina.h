@@ -16,6 +16,7 @@ namespace assignment2
 	private:
 		static DeusExMachina* instance;
 		DeusExMachina();
+		~DeusExMachina();
 
 		unsigned int mMaxVehicleCount = 10;
 		unsigned int mCurVehicleCount = 0;
