@@ -116,14 +116,15 @@ int main()
 
 	assert(deusExMachina1->GetFurthestTravelled() == boat);
 
-
 	Airplane* a100 = new Airplane(10);
 	Airplane* a101 = new Airplane(5);
-	a100->AddPassenger(new Person("test1", 1233));
+
+	Person *p100 = new Person("test1", 1233);
+	a100->AddPassenger(p100);
 	a100->AddPassenger(new Person("test2", 1234));
 	a100->AddPassenger(new Person("test3", 1235));
-
-	(*a100).operator=(*a101);
+	
+	*a100 = *a101;
 
 	return 0;
 }

@@ -14,7 +14,7 @@ namespace assignment2
 		Boatplane(unsigned int maxPassengersCount);
 		Boatplane(const Boatplane& boatplane);
 
-		Boatplane& operator=(const Boatplane& airplane);
+		Boatplane& operator=(const Boatplane& boatplane);
 
 		virtual ~Boatplane();
 

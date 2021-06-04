@@ -3,13 +3,17 @@
 namespace assignment2
 {
 	Sedan::Sedan()
-	:Vehicle(4)
+		: Vehicle(4)
 	{
 		
 	}
 
 	Sedan::~Sedan()
 	{
+		if(this->mTrailer != nullptr)
+		{
+			delete this->mTrailer;
+		}
 	}
 
 	Sedan& Sedan::operator=(const Sedan& sedan)

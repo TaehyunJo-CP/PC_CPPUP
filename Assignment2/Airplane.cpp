@@ -3,7 +3,7 @@
 namespace assignment2
 {
 	Airplane::Airplane(unsigned int maxPassengersCount)
-	:Vehicle(maxPassengersCount)
+		: Vehicle(maxPassengersCount)
 	{
 	}
 
