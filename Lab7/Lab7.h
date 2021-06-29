@@ -64,7 +64,7 @@ namespace lab7
 	{
 		std::vector<T> combined;
 
-		for (int i = 0; i < v1.size(); i++)
+		for (unsigned int i = 0; i < v1.size(); i++)
 		{
 			T v = v1[i];
 			if (std::find(combined.begin(), combined.end(), v) == combined.end())
@@ -73,7 +73,7 @@ namespace lab7
 			}
 		}
 
-		for (int i = 0; i < v2.size(); i++)
+		for (unsigned int i = 0; i < v2.size(); i++)
 		{
 			T v = v2[i];
 			if (std::find(combined.begin(), combined.end(), v) == combined.end())
@@ -112,7 +112,7 @@ namespace lab7
 	template<typename T>
 	std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 	{
-		for (int i = 0; i < v.size(); i++)
+		for (unsigned int i = 0; i < v.size(); i++)
 		{
 			T t = v[i];
 			os << t;
