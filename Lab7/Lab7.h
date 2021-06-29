@@ -12,7 +12,7 @@ namespace lab7
 		std::map<K, V> m;
 
 		int minLength = std::min(keys.size(), values.size());
-		for(int i = 0; i < minLength; i++)
+		for (int i = 0; i < minLength; i++)
 		{
 			m.insert(std::pair<K, V>(keys[i], values[i]));
 		}
@@ -24,7 +24,7 @@ namespace lab7
 	std::vector<K> GetKeys(const std::map<K, V>& m)
 	{
 		std::vector<K> v;
-		for(auto it = m.begin(); it != m.end(); it++)
+		for (auto it = m.begin(); it != m.end(); it++)
 		{
 			v.push_back(it->first);
 		}
@@ -36,7 +36,7 @@ namespace lab7
 	std::vector<V> GetValues(const std::map<K, V>& m)
 	{
 		std::vector<V> v;
-		for(auto it = m.begin(); it != m.end(); it++)
+		for (auto it = m.begin(); it != m.end(); it++)
 		{
 			v.push_back(it->second);
 		}
@@ -50,7 +50,7 @@ namespace lab7
 
 		int backIndex;
 		int vSize = v.size();
-		for(int i = 0; i < vSize; i++)
+		for (int i = 0; i < vSize; i++)
 		{
 			backIndex = vSize - i - 1;
 			rv.push_back(v[backIndex]);
@@ -64,10 +64,10 @@ namespace lab7
 	{
 		std::vector<T> combined;
 
-		for(int i = 0; i < v1.size(); i++)
+		for (int i = 0; i < v1.size(); i++)
 		{
 			T v = v1[i];
-			if(std::find(combined.begin(), combined.end(), v) == combined.end())
+			if (std::find(combined.begin(), combined.end(), v) == combined.end())
 			{
 				combined.push_back(v);
 			}
@@ -90,7 +90,7 @@ namespace lab7
 	{
 		std::map<K, V> combined;
 
-		for(auto it = m1.begin(); it != m1.end(); it++)
+		for (auto it = m1.begin(); it != m1.end(); it++)
 		{
 			K k = it->first;
 			V v = it->second;
@@ -98,7 +98,7 @@ namespace lab7
 			combined.insert(std::pair<K, V>(k, v));
 		}
 
-		for(auto it = m2.begin(); it != m2.end(); it++)
+		for (auto it = m2.begin(); it != m2.end(); it++)
 		{
 			K k = it->first;
 			V v = it->second;
@@ -112,7 +112,7 @@ namespace lab7
 	template<typename T>
 	std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 	{
-		for(int i = 0; i < v.size(); i++)
+		for (int i = 0; i < v.size(); i++)
 		{
 			T t = v[i];
 			os << t;
@@ -127,7 +127,7 @@ namespace lab7
 	template <typename K, class V>
 	std::ostream& operator<<(std::ostream& os, const std::map<K, V>& m)
 	{
-		for(auto it = m.begin(); it != m.end(); it++)
+		for (auto it = m.begin(); it != m.end(); it++)
 		{
 			K k = it->first;
 			V v = it->second;
