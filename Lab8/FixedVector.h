@@ -15,7 +15,7 @@ namespace lab8
 		bool Add(T& ele);
 		bool Remove(T& ele);
 		const T& Get(unsigned int index) const;
-		T& operator[](unsigned int index) const;
+		T& operator[](unsigned int index);
 		int GetIndex(T ele) const;
 		size_t GetSize() const;
 		size_t GetCapacity() const;
@@ -68,7 +68,7 @@ namespace lab8
 	}
 
 	template<typename T, size_t N>
-	T& FixedVector<T, N>::operator[](unsigned int index) const
+	T& FixedVector<T, N>::operator[](unsigned int index)
 	{
 		return mArr[index];
 	}

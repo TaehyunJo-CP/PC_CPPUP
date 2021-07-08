@@ -2,7 +2,6 @@
 
 namespace lab8
 {
-
 	template <size_t N>
 	class FixedVector<bool, N>
 	{
@@ -12,11 +11,11 @@ namespace lab8
 		size_t mCapacity;
 	public:
 		FixedVector();
-		bool Add(bool ele);
-		bool Remove(bool ele);
+		bool Add(bool bEle);
+		bool Remove(bool bEle);
 		bool Get(unsigned int index) const;
 		bool operator[](unsigned int index);
-		int GetIndex(bool ele) const;
+		int GetIndex(bool bEle) const;
 		size_t GetSize() const;
 		size_t GetCapacity() const;
 	};
@@ -25,20 +24,20 @@ namespace lab8
 	FixedVector<bool, N>::FixedVector()
 		: mSize(0), mCapacity(N)
 	{
-		for(size_t i = 0; i < N / 32 + 1; i++)
+		for (size_t i = 0; i < N / 32 + 1; i++)
 		{
 			mArr[i] = 0;
 		}
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::Add(bool ele)
+	bool FixedVector<bool, N>::Add(bool bEle)
 	{
 		if (mSize < mCapacity)
 		{
 			size_t arrIdx = mSize / 32;
 			size_t spcIdx = mSize % 32;
-			if (ele)
+			if (bEle)
 			{
 				mArr[arrIdx] ^= (-1 ^ mArr[arrIdx]) & (1UL << spcIdx);
 			}
@@ -49,16 +48,17 @@ namespace lab8
 			
 			mSize++;
 			return true;
-		} else
+		} 
+		else
 		{
 			return false;
 		}
 	}
 
 	template<size_t N>
-	inline bool FixedVector<bool, N>::Remove(bool ele)
+	inline bool FixedVector<bool, N>::Remove(bool bEle)
 	{
-		int findIdx = GetIndex(ele);
+		int findIdx = GetIndex(bEle);
 
 		if (findIdx == -1)
 		{
@@ -67,7 +67,7 @@ namespace lab8
 
 		size_t startIdx = static_cast<size_t>(findIdx);
 
-		for(size_t i = startIdx; i < mSize - 1; i++)
+		for (size_t i = startIdx; i < mSize - 1; i++)
 		{
 			size_t arrIdx = i / 32;
 			size_t spcIdx = i % 32;
@@ -116,7 +116,7 @@ namespace lab8
 	}
 
 	template<size_t N>
-	inline int FixedVector<bool, N>::GetIndex(bool ele) const
+	inline int FixedVector<bool, N>::GetIndex(bool bEle) const
 	{
 		for (size_t i = 0; i < mSize; i++)
 		{
@@ -125,11 +125,11 @@ namespace lab8
 
 			size_t bit = (mArr[arrIdx] >> spcIdx) & 1U;
 
-			if (ele == true && bit == 1)
+			if (bEle == true && bit == 1)
 			{
 				return i;
 			}
-			else if (ele == false && bit == 0)
+			else if (bEle == false && bit == 0)
 			{
 				return i;
 			}
