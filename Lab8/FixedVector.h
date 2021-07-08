@@ -16,7 +16,7 @@ namespace lab8
 		bool Remove(T& ele);
 		const T& Get(unsigned int index) const;
 		T& operator[](unsigned int index);
-		int GetIndex(T ele) const;
+		int GetIndex(T& ele) const;
 		size_t GetSize() const;
 		size_t GetCapacity() const;
 	};
@@ -74,7 +74,7 @@ namespace lab8
 	}
 
 	template<typename T, size_t N>
-	inline int FixedVector<T, N>::GetIndex(T ele) const
+	inline int FixedVector<T, N>::GetIndex(T& ele) const
 	{
 		for (size_t i = 0; i < mSize; i++)
 		{
