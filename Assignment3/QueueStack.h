@@ -41,7 +41,8 @@ namespace assignment3
 	inline QueueStack<T>::QueueStack(QueueStack& other)
 		: mStackSize(other.mStackSize)
 	{
-		for (unsigned int i = 0; i < other.mQueue.size(); i++)
+		unsigned int size = other.mQueue.size();
+		for (unsigned int i = 0; i < size; i++)
 		{
 			std::stack<T>* front = other.mQueue.front();
 			other.mQueue.pop();
@@ -55,7 +56,8 @@ namespace assignment3
 	template<typename T>
 	inline QueueStack<T>::~QueueStack()
 	{
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int queueSize = mQueue.size();
+		for (unsigned int i = 0; i < queueSize; i++)
 		{
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
@@ -71,7 +73,8 @@ namespace assignment3
 			return *this;
 		}
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int queueSize = mQueue.size();
+		for (unsigned int i = 0; i < queueSize; i++)
 		{
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
@@ -80,7 +83,8 @@ namespace assignment3
 
 		mStackSize = other.mStackSize;
 
-		for (unsigned int i = 0; i < other.mQueue.size(); i++)
+		unsigned int otherQueueSize = other.mQueue.size();
+		for (unsigned int i = 0; i < otherQueueSize; i++)
 		{
 			std::stack<T>* front = other.mQueue.front();
 			other.mQueue.pop();
@@ -142,7 +146,8 @@ namespace assignment3
 	{
 		T max = std::numeric_limits<T>::lowest();
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int size = mQueue.size();
+		for (unsigned int i = 0; i < size; i++)
 		{
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
@@ -174,7 +179,8 @@ namespace assignment3
 	{
 		T min = std::numeric_limits<T>::max();
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int queueSize = mQueue.size();
+		for (unsigned int i = 0; i < queueSize; i++)
 		{
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
@@ -193,9 +199,7 @@ namespace assignment3
 			}
 
 			delete front;
-			front = tmp;
-
-			mQueue.push(front);
+			mQueue.push(tmp);
 		}
 
 		return min;
@@ -215,7 +219,8 @@ namespace assignment3
 	{
 		T sum = 0;
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int queueSize = mQueue.size();
+		for (unsigned int i = 0; i < queueSize; i++)
 		{
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
@@ -244,7 +249,8 @@ namespace assignment3
 	{
 		unsigned int count = 0;
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int queueSize = mQueue.size();
+		for (unsigned int i = 0; i < queueSize; i++)
 		{
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
@@ -260,4 +266,6 @@ namespace assignment3
 	{
 		return mQueue.size();
 	}
+
+
 }
