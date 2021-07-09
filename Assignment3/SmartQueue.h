@@ -13,8 +13,7 @@ namespace assignment3
 
 		unsigned int mCount;
 
-		T mSumT;
-		double mSum;
+		T mSum;
 		double mSqrSum;
 
 	public:
@@ -37,7 +36,7 @@ namespace assignment3
 
 	template<typename T>
 	inline SmartQueue<T>::SmartQueue()
-		: mCount(0), mSum(0), mSqrSum(0), mSumT(0)
+		: mCount(0), mSqrSum(0), mSum(0)
 	{
 	}
 
@@ -48,7 +47,6 @@ namespace assignment3
 
 		mCount = other.mCount;
 		mSum = other.mSum;
-		mSumT = other.mSumT;
 		mSqrSum = other.mSqrSum;
 	}
 
@@ -69,7 +67,6 @@ namespace assignment3
 
 		mCount = other.mCount;
 		mSum = other.mSum;
-		mSumT = other.mSumT;
 		mSqrSum = other.mSqrSum;
 
 		return *this;
@@ -81,11 +78,8 @@ namespace assignment3
 		mQueue.push(ele);
 		mCount++;
 
-
-		mSumT += ele;
+		mSum += ele;
 		double v = static_cast<double>(ele);
-
-		mSum += v;
 		mSqrSum += v * v;
 	}
 
@@ -103,10 +97,8 @@ namespace assignment3
 
 		mCount--;
 
-		mSumT -= front;
+		mSum -= front;
 		double v = static_cast<double>(front);
-
-		mSum -= v;
 		mSqrSum -= v * v;
 
 		return front;
@@ -165,7 +157,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartQueue<T>::GetSum() const
 	{
-		return mSumT;
+		return mSum;
 	}
 
 	template<typename T>
