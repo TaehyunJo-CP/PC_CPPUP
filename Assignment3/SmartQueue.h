@@ -17,7 +17,9 @@ namespace assignment3
 
 	public:
 		SmartQueue();
+		SmartQueue(SmartQueue& other);
 		virtual ~SmartQueue();
+		SmartQueue<T>& operator=(SmartQueue<T>& other);
 
 		void Enqueue(const T ele);
 		T Peek() const;
@@ -38,8 +40,35 @@ namespace assignment3
 	}
 
 	template<typename T>
+	inline SmartQueue<T>::SmartQueue(SmartQueue& other)
+	{
+		mQueue = std::queue<T>(other.mQueue);
+
+		mCount = other.mCount;
+		mSum = other.mSum;
+		mSqrSum = other.mSqrSum;
+	}
+
+	template<typename T>
 	inline SmartQueue<T>::~SmartQueue()
 	{
+	}
+
+	template<typename T>
+	inline SmartQueue<T>& SmartQueue<T>::operator=(SmartQueue<T>& other)
+	{
+		if (&other == this)
+		{
+			return *this;
+		}
+
+		mQueue = std::queue<T>(other.mQueue);
+
+		mCount = other.mCount;
+		mSum = other.mSum;
+		mSqrSum = other.mSqrSum;
+
+		return *this;
 	}
 
 	template<typename T>

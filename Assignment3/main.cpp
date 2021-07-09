@@ -165,8 +165,13 @@ int main()
 	sq->Enqueue(5);
 	sq->Enqueue(-2);
 
+	SmartQueue<int>sq2(*sq);
+
 	assert(sq->Peek() == 6);
 	assert(sq->GetCount() == 3);
+
+	assert(sq2.Peek() == 6);
+	assert(sq2.GetCount() == 3);
 
 	int i = sq->Dequeue();
 
@@ -174,16 +179,26 @@ int main()
 	assert(sq->GetCount() == 2);
 	assert(sq->Peek() == 5);
 
+	assert(sq2.Dequeue() == 6);
+	assert(sq2.GetCount() == 2);
+	assert(sq2.Peek() == 5);
+
 	sq->Enqueue(1);
 	sq->Enqueue(1);
 	sq->Enqueue(1);
 	sq->Enqueue(1);
 	sq->Enqueue(1);
+
+	SmartQueue<int>sq3;
+	sq3 = *sq;
 
 	assert(sq->GetMax() == 5);
 	assert(sq->GetMin() == -2);
 
 	delete sq;
+
+	assert(sq3.GetMax() == 5);
+	assert(sq3.GetMin() == -2);
 
 	SmartQueue<int> q;
 	q.Enqueue(6);
