@@ -1,6 +1,7 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
+#include <limits>
 
 #include "SmartStack.h"
 #include "SmartQueue.h"
@@ -11,6 +12,82 @@ using namespace assignment3;
 int main()
 {
 	const double EPSILON = 0.0009765625;
+
+	SmartStack<double> s;
+
+	s.Push(1.0);
+	s.Push(1.0);
+	s.Push(1.0);
+	s.Push(5.0);
+	s.Push(1.0);
+
+	assert(s.GetMax() == 5.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+	s.Pop();
+
+	assert(s.GetMax() == 1.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+	s.Pop();
+	s.Pop();
+
+	s.Push(1.0);
+	s.Push(2.0);
+	s.Push(3.0);
+	s.Push(3.0);
+	s.Push(4.0);
+	s.Push(4.0);
+	s.Push(4.0);
+	s.Push(5.0);
+
+	assert(s.GetMax() == 5.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+
+	assert(s.GetMax() == 4.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+
+	assert(s.GetMax() == 4.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+
+	assert(s.GetMax() == 4.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+
+
+	assert(s.GetMax() == 3.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+
+	assert(s.GetMax() == 3.0);
+	assert(s.GetMin() == 1.0);
+
+
+	s.Pop();
+
+	assert(s.GetMax() == 2.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+
+	assert(s.GetMax() == 1.0);
+	assert(s.GetMin() == 1.0);
+
+	s.Pop();
+
+	assert(s.GetMax() == std::numeric_limits<double>::min());
+	assert(s.GetMin() == std::numeric_limits<double>::max());
+
 
 	SmartStack<float> ss;
 

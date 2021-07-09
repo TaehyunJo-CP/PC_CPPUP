@@ -92,7 +92,7 @@ namespace assignment3
 	template<typename T>
 	inline T QueueStack<T>::GetMax()
 	{
-		T max = std::numeric_limits<T>::min();
+		T max = std::numeric_limits<T>::lowest();
 
 		for (unsigned int i = 0; i < mQueue.size(); i++)
 		{

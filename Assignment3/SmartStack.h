@@ -89,6 +89,17 @@ namespace assignment3
 
 		mCount--;
 
+		if (mCount != 0)
+		{
+			mMin = mMinStack.top();
+			mMax = mMaxStack.top();
+		}
+		else
+		{
+			mMin = std::numeric_limits<T>::max();
+			mMax = std::numeric_limits<T>::lowest();
+		}
+
 		return popped;
 	}
 
@@ -103,7 +114,7 @@ namespace assignment3
 	{
 		if (mMaxStack.empty())
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 		else
 		{
