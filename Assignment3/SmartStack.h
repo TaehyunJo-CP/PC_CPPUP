@@ -18,8 +18,8 @@ namespace assignment3
 		T mMin;
 		T mMax;
 
-		T mSum;
-		T mSqrSum;
+		double mSum;
+		double mSqrSum;
 	
 	public:
 		SmartStack();
@@ -110,8 +110,9 @@ namespace assignment3
 		mMinStack.push(mMin);
 		mMaxStack.push(mMax);
 
-		mSum += ele;
-		mSqrSum += ele * ele;
+		double v = static_cast<double>(ele);
+		mSum += v;
+		mSqrSum += v * v;
 
 		mCount++;
 	}
@@ -125,8 +126,9 @@ namespace assignment3
 		mMinStack.pop();
 		mMaxStack.pop();
 
-		mSum -= popped;
-		mSqrSum -= popped * popped;
+		double v = static_cast<double>(popped);
+		mSum -= v;
+		mSqrSum -= v * v;
 
 		mCount--;
 

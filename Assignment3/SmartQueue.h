@@ -12,8 +12,8 @@ namespace assignment3
 		std::queue<T> mQueue;
 
 		unsigned int mCount;
-		T mSum;
-		T mSqrSum;
+		double mSum;
+		double mSqrSum;
 
 	public:
 		SmartQueue();
@@ -77,8 +77,10 @@ namespace assignment3
 		mQueue.push(ele);
 		mCount++;
 
-		mSum += ele;
-		mSqrSum += ele * ele;
+		double v = static_cast<double>(ele);
+
+		mSum += v;
+		mSqrSum += v * v;
 	}
 
 	template<typename T>
@@ -95,8 +97,10 @@ namespace assignment3
 
 		mCount--;
 
-		mSum -= front;
-		mSqrSum -= front * front;
+		double v = static_cast<double>(front);
+
+		mSum -= v;
+		mSqrSum -= v * v;
 
 		return front;
 	}

@@ -39,7 +39,7 @@ namespace assignment3
 
 	template<typename T>
 	inline QueueStack<T>::QueueStack(QueueStack& other)
-		:mStackSize(other.mStackSize)
+		: mStackSize(other.mStackSize)
 	{
 		for (unsigned int i = 0; i < other.mQueue.size(); i++)
 		{
