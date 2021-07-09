@@ -3,6 +3,7 @@
 
 #include "SmartStack.h"
 #include "SmartQueue.h"
+#include "QueueStack.h"
 
 using namespace assignment3;
 
@@ -82,6 +83,40 @@ int main()
 	assert(std::abs(q.GetSum() - 9.0) <= EPSILON);
 	assert(std::abs(q.GetVariance() - 12.667) <= EPSILON);
 	assert(std::abs(q.GetStandardDeviation() - 3.559) <= EPSILON);
+
+	QueueStack<int> qs(3);
+
+	qs.Enqueue(1); // [ [ 1 ] ]
+	qs.Enqueue(2); // [ [ 1, 2 ] ]
+	qs.Enqueue(3); // [ [ 1, 2, 3 ] ]
+	qs.Enqueue(4); // [ [ 1, 2, 3 ], [ 4 ] ]
+	qs.Enqueue(5); // [ [ 1, 2, 3 ], [ 4, 5 ] ]
+
+	assert(qs.GetSum() == 15);
+	assert(qs.GetStackCount() == 2);
+	
+	assert(qs.GetMin() == 1);
+	assert(qs.GetMax() == 5);
+	assert(qs.Peek() == 3);
+	assert(qs.GetCount() == 5);
+	assert(qs.Dequeue() == 3);
+	assert(qs.GetMax() == 5);
+	assert(std::abs(qs.GetAverage() - 3) <= EPSILON);
+	
+	assert(qs.Dequeue() == 2);
+	assert(qs.GetMin() == 1);
+	assert(qs.GetMax() == 5);
+	assert(qs.Dequeue() == 1);
+	assert(qs.GetMin() == 4);
+	assert(qs.GetMax() == 5);
+	assert(qs.Dequeue() == 5);
+	assert(qs.GetMax() == 4);
+	assert(qs.GetMin() == 4);
+	assert(qs.Dequeue() == 4);
+	assert(qs.GetCount() == 0);
+
+	assert(qs.GetSum() == 0);
+	assert(qs.GetStackCount() == 0);
 
 	return 0;
 }
