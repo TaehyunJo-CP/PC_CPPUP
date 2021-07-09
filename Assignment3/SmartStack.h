@@ -196,7 +196,7 @@ namespace assignment3
 	template<typename T>
 	inline double SmartStack<T>::GetVariance() const
 	{
-		double sum =static_cast<double>(mSumT);
+		double sum = static_cast<double>(mSumT);
 		double count = static_cast<double>(mCount);
 
 		return mSqrSum / count - (sum / count) * (sum / count);
