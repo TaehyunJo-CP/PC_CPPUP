@@ -1,5 +1,6 @@
 #include <cassert>
 #include <cmath>
+#include <iostream>
 
 #include "SmartStack.h"
 #include "SmartQueue.h"
@@ -12,6 +13,8 @@ int main()
 	const double EPSILON = 0.0009765625;
 
 	SmartStack<float> ss;
+
+	std::cout << ss.GetMax() << ss.GetMin() << std::endl;
 
 	ss.Push(3.4999f);
 	ss.Push(1.2f);
@@ -86,6 +89,9 @@ int main()
 
 	QueueStack<int> qs(3);
 
+	std::cout << qs.GetMax() << std::endl;
+	std::cout << qs.GetMin() << std::endl;
+
 	qs.Enqueue(1); // [ [ 1 ] ]
 	qs.Enqueue(2); // [ [ 1, 2 ] ]
 	qs.Enqueue(3); // [ [ 1, 2, 3 ] ]
@@ -117,6 +123,27 @@ int main()
 
 	assert(qs.GetSum() == 0);
 	assert(qs.GetStackCount() == 0);
+
+	SmartQueue<double> sq1;
+
+	std::cout << sq1.GetMax() << std::endl;
+	std::cout << sq1.GetMin() << std::endl;
+
+	sq1.Enqueue(3);
+	sq1.Enqueue(0);
+	sq1.Enqueue(5);
+	
+	assert(sq1.GetMax() == 5);
+	assert(sq1.GetMin() == 0);
+	sq1.Dequeue();
+	assert(sq1.GetMax() == 5);
+	assert(sq1.GetMin() == 0);
+	sq1.Dequeue();
+	assert(sq1.GetMin() == 5);
+	assert(sq1.GetMax() == 5);
+	sq1.Dequeue();
+
+	
 
 	return 0;
 }

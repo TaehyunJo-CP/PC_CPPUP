@@ -101,13 +101,28 @@ namespace assignment3
 	template<typename T>
 	inline T SmartStack<T>::GetMax() const
 	{
-		return mMaxStack.top();
+		if (mMaxStack.empty())
+		{
+			return std::numeric_limits<T>::min();
+		}
+		else
+		{
+			return mMaxStack.top();
+		}
+		
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::GetMin() const
 	{
-		return mMinStack.top();
+		if (mMinStack.empty())
+		{
+			return std::numeric_limits<T>::max();
+		}
+		else
+		{
+			return mMinStack.top();
+		}
 	}
 
 	template<typename T>
