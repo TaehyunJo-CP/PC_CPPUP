@@ -43,7 +43,7 @@ namespace assignment3
 		: mCount(0), mSum(0), mSqrSum(0)
 	{
 		mMin = std::numeric_limits<T>::max();
-		mMax = std::numeric_limits<T>::min();
+		mMax = std::numeric_limits<T>::lowest();
 	}
 
 	template<typename T>

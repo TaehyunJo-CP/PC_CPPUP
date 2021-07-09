@@ -13,7 +13,7 @@ int main()
 {
 	const double EPSILON = 0.0009765625;
 
-	SmartStack<double> s;
+	SmartStack<float> s;
 
 	s.Push(1.0);
 	s.Push(1.0);
@@ -85,9 +85,15 @@ int main()
 
 	s.Pop();
 
-	assert(s.GetMax() == std::numeric_limits<double>::min());
-	assert(s.GetMin() == std::numeric_limits<double>::max());
+	s.Push(3.0);
 
+	assert(s.GetMax() == 3.0);
+	assert(s.GetMin() == 3.0);
+
+	s.Pop();
+
+	assert(s.GetMax() == std::numeric_limits<float>::lowest());
+	assert(s.GetMin() == std::numeric_limits<float>::max());
 
 	SmartStack<float> ss;
 
