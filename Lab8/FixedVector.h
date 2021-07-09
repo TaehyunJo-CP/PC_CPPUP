@@ -12,11 +12,11 @@ namespace lab8
 		size_t mCapacity;
 	public:
 		FixedVector();
-		bool Add(T& ele);
-		bool Remove(T& ele);
+		bool Add(const T& ele);
+		bool Remove(const T& ele);
 		const T& Get(unsigned int index) const;
 		T& operator[](unsigned int index);
-		int GetIndex(T& ele) const;
+		int GetIndex(const T& ele) const;
 		size_t GetSize() const;
 		size_t GetCapacity() const;
 	};
@@ -28,7 +28,7 @@ namespace lab8
 	}
 
 	template <typename T, size_t N>
-	bool FixedVector<T, N>::Add(T& ele)
+	bool FixedVector<T, N>::Add(const T& ele)
 	{
 		if (mSize < mCapacity)
 		{
@@ -43,7 +43,7 @@ namespace lab8
 	}
 
 	template<typename T, size_t N>
-	inline bool FixedVector<T, N>::Remove(T& ele)
+	inline bool FixedVector<T, N>::Remove(const T& ele)
 	{
 		for (size_t i = 0; i < mSize; i++)
 		{
@@ -74,7 +74,7 @@ namespace lab8
 	}
 
 	template<typename T, size_t N>
-	inline int FixedVector<T, N>::GetIndex(T& ele) const
+	inline int FixedVector<T, N>::GetIndex(const T& ele) const
 	{
 		for (size_t i = 0; i < mSize; i++)
 		{
