@@ -181,9 +181,10 @@ int main()
 	qs.Enqueue(4); // [ [ 1, 2, 3 ], [ 4 ] ]
 	qs.Enqueue(5); // [ [ 1, 2, 3 ], [ 4, 5 ] ]
 
+	QueueStack<int> qs2(qs);
+
 	assert(qs.GetSum() == 15);
 	assert(qs.GetStackCount() == 2);
-	
 	assert(qs.GetMin() == 1);
 	assert(qs.GetMax() == 5);
 	assert(qs.Peek() == 3);
@@ -191,7 +192,6 @@ int main()
 	assert(qs.Dequeue() == 3);
 	assert(qs.GetMax() == 5);
 	assert(std::abs(qs.GetAverage() - 3) <= EPSILON);
-	
 	assert(qs.Dequeue() == 2);
 	assert(qs.GetMin() == 1);
 	assert(qs.GetMax() == 5);
@@ -203,9 +203,33 @@ int main()
 	assert(qs.GetMin() == 4);
 	assert(qs.Dequeue() == 4);
 	assert(qs.GetCount() == 0);
-
 	assert(qs.GetSum() == 0);
 	assert(qs.GetStackCount() == 0);
+
+	assert(qs2.GetSum() == 15);
+	assert(qs2.GetStackCount() == 2);
+	assert(qs2.GetMin() == 1);
+	assert(qs2.GetMax() == 5);
+	assert(qs2.Peek() == 3);
+	assert(qs2.GetCount() == 5);
+	assert(qs2.Dequeue() == 3);
+	assert(qs2.GetMax() == 5);
+	assert(std::abs(qs2.GetAverage() - 3) <= EPSILON);
+	assert(qs2.Dequeue() == 2);
+	assert(qs2.GetMin() == 1);
+	assert(qs2.GetMax() == 5);
+	assert(qs2.Dequeue() == 1);
+	assert(qs2.GetMin() == 4);
+	assert(qs2.GetMax() == 5);
+	assert(qs2.Dequeue() == 5);
+	assert(qs2.GetMax() == 4);
+	assert(qs2.GetMin() == 4);
+	assert(qs2.Dequeue() == 4);
+	assert(qs2.GetCount() == 0);
+	assert(qs2.GetSum() == 0);
+	assert(qs2.GetStackCount() == 0);
+
+
 
 	SmartQueue<double> sq1;
 

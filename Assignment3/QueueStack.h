@@ -15,6 +15,7 @@ namespace assignment3
 
 	public:
 		QueueStack(unsigned int maxStackSize);
+		QueueStack(QueueStack& other);
 		virtual ~QueueStack();
 
 		void Enqueue(const T ele);
@@ -32,6 +33,21 @@ namespace assignment3
 	inline QueueStack<T>::QueueStack(unsigned int maxStackSize)
 		: mStackSize(maxStackSize)
 	{
+	}
+
+	template<typename T>
+	inline QueueStack<T>::QueueStack(QueueStack& other)
+		:mStackSize(other.mStackSize)
+	{
+		for (unsigned int i = 0; i < other.mQueue.size(); i++)
+		{
+			std::stack<T>* front = other.mQueue.front();
+			other.mQueue.pop();
+
+			mQueue.push(new std::stack<T>(*front));
+
+			other.mQueue.push(front);
+		}
 	}
 
 	template<typename T>
