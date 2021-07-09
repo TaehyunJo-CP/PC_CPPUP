@@ -182,6 +182,7 @@ int main()
 	qs.Enqueue(5); // [ [ 1, 2, 3 ], [ 4, 5 ] ]
 
 	QueueStack<int> qs2(qs);
+	QueueStack<int> qs3 = qs;
 
 	assert(qs.GetSum() == 15);
 	assert(qs.GetStackCount() == 2);
@@ -229,6 +230,28 @@ int main()
 	assert(qs2.GetSum() == 0);
 	assert(qs2.GetStackCount() == 0);
 
+	assert(qs3.GetSum() == 15);
+	assert(qs3.GetStackCount() == 2);
+	assert(qs3.GetMin() == 1);
+	assert(qs3.GetMax() == 5);
+	assert(qs3.Peek() == 3);
+	assert(qs3.GetCount() == 5);
+	assert(qs3.Dequeue() == 3);
+	assert(qs3.GetMax() == 5);
+	assert(std::abs(qs3.GetAverage() - 3) <= EPSILON);
+	assert(qs3.Dequeue() == 2);
+	assert(qs3.GetMin() == 1);
+	assert(qs3.GetMax() == 5);
+	assert(qs3.Dequeue() == 1);
+	assert(qs3.GetMin() == 4);
+	assert(qs3.GetMax() == 5);
+	assert(qs3.Dequeue() == 5);
+	assert(qs3.GetMax() == 4);
+	assert(qs3.GetMin() == 4);
+	assert(qs3.Dequeue() == 4);
+	assert(qs3.GetCount() == 0);
+	assert(qs3.GetSum() == 0);
+	assert(qs3.GetStackCount() == 0);
 
 
 	SmartQueue<double> sq1;

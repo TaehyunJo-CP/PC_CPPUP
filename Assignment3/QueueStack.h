@@ -18,6 +18,8 @@ namespace assignment3
 		QueueStack(QueueStack& other);
 		virtual ~QueueStack();
 
+		QueueStack<T>& operator=(const QueueStack<T>& other);
+
 		void Enqueue(const T ele);
 		T Peek() const;
 		T Dequeue();
@@ -58,6 +60,34 @@ namespace assignment3
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
 			delete front;
+		}
+	}
+
+	template<typename T>
+	inline QueueStack<T>& QueueStack<T>::operator=(const QueueStack<T>& other)
+	{
+		if (other == this)
+		{
+			return *this;
+		}
+
+		for (unsigned int i = 0; i < mQueue.size(); i++)
+		{
+			std::stack<T>* front = mQueue.front();
+			mQueue.pop();
+			delete front;
+		}
+
+		mStackSize = other.mStackSize;
+
+		for (unsigned int i = 0; i < other.mQueue.size(); i++)
+		{
+			std::stack<T>* front = other.mQueue.front();
+			other.mQueue.pop();
+
+			mQueue.push(new std::stack<T>(*front));
+
+			other.mQueue.push(front);
 		}
 	}
 
