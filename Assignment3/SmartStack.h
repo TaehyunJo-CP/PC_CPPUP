@@ -23,6 +23,8 @@ namespace assignment3
 	
 	public:
 		SmartStack();
+		SmartStack(SmartStack<T>& other);
+		SmartStack<T>& operator=(SmartStack<T>& other);
 		virtual ~SmartStack();
 
 		void Push(const T ele);
@@ -44,6 +46,45 @@ namespace assignment3
 	{
 		mMin = std::numeric_limits<T>::max();
 		mMax = std::numeric_limits<T>::lowest();
+	}
+
+	template<typename T>
+	inline SmartStack<T>::SmartStack(SmartStack<T>& other)
+	{
+		mStack = std::stack<T>(other.mStack);
+		mMinStack = std::stack<T>(other.mMinStack);
+		mMaxStack = std::stack<T>(other.mMaxStack);
+
+		mCount = other.mCount;
+
+		mMin = other.mMin;
+		mMax = other.mMax;
+
+		mSum = other.mSum;
+		mSqrSum = other.mSqrSum;
+	}
+
+	template<typename T>
+	inline SmartStack<T>& SmartStack<T>::operator=(SmartStack<T>& other)
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
+		mStack = std::stack<T>(other.mStack);
+		mMinStack = std::stack<T>(other.mMinStack);
+		mMaxStack = std::stack<T>(other.mMaxStack);
+
+		mCount = other.mCount;
+
+		mMin = other.mMin;
+		mMax = other.mMax;
+
+		mSum = other.mSum;
+		mSqrSum = other.mSqrSum;
+
+		return *this;
 	}
 
 	template<typename T>

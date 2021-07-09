@@ -21,18 +21,42 @@ int main()
 	s.Push(5.0);
 	s.Push(1.0);
 
+	SmartStack<float> s2(s);
+	SmartStack<float> s3;
+	s3 = s2;
+
 	assert(s.GetMax() == 5.0);
 	assert(s.GetMin() == 1.0);
-
 	s.Pop();
 	s.Pop();
 
 	assert(s.GetMax() == 1.0);
 	assert(s.GetMin() == 1.0);
+	s.Pop();
+	s.Pop();
+	s.Pop();
 
-	s.Pop();
-	s.Pop();
-	s.Pop();
+	assert(s2.GetMax() == 5.0);
+	assert(s2.GetMin() == 1.0);
+	s2.Pop();
+	s2.Pop();
+
+	assert(s2.GetMax() == 1.0);
+	assert(s2.GetMin() == 1.0);
+	s2.Pop();
+	s2.Pop();
+	s2.Pop();
+
+	assert(s3.GetMax() == 5.0);
+	assert(s3.GetMin() == 1.0);
+	s3.Pop();
+	s3.Pop();
+
+	assert(s3.GetMax() == 1.0);
+	assert(s3.GetMin() == 1.0);
+	s3.Pop();
+	s3.Pop();
+	s3.Pop();
 
 	s.Push(1.0);
 	s.Push(2.0);
