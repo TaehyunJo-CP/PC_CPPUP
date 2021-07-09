@@ -182,7 +182,8 @@ int main()
 	qs.Enqueue(5); // [ [ 1, 2, 3 ], [ 4, 5 ] ]
 
 	QueueStack<int> qs2(qs);
-	QueueStack<int> qs3 = qs;
+	QueueStack<int> qs3(1000);
+	qs3 = qs;
 
 	assert(qs.GetSum() == 15);
 	assert(qs.GetStackCount() == 2);
@@ -253,6 +254,20 @@ int main()
 	assert(qs3.GetSum() == 0);
 	assert(qs3.GetStackCount() == 0);
 
+	QueueStack<int> qs4(3);
+	qs4 = qs;
+
+	assert(qs4.GetCount() == 0);
+	assert(qs4.GetSum() == 0);
+	assert(qs4.GetStackCount() == 0);
+
+	QueueStack<int> qs5(1000);
+	qs5 = qs4;
+
+	assert(qs5.GetCount() == 0);
+	assert(qs5.GetSum() == 0);
+	assert(qs5.GetStackCount() == 0);
+
 
 	SmartQueue<double> sq1;
 
@@ -272,8 +287,6 @@ int main()
 	assert(sq1.GetMin() == 5);
 	assert(sq1.GetMax() == 5);
 	sq1.Dequeue();
-
-	
 
 	return 0;
 }

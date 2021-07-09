@@ -18,7 +18,7 @@ namespace assignment3
 		QueueStack(QueueStack& other);
 		virtual ~QueueStack();
 
-		QueueStack<T>& operator=(const QueueStack<T>& other);
+		QueueStack<T>& operator=(QueueStack<T>& other);
 
 		void Enqueue(const T ele);
 		T Peek() const;
@@ -64,9 +64,9 @@ namespace assignment3
 	}
 
 	template<typename T>
-	inline QueueStack<T>& QueueStack<T>::operator=(const QueueStack<T>& other)
+	inline QueueStack<T>& QueueStack<T>::operator=(QueueStack<T>& other)
 	{
-		if (other == this)
+		if (&other == this)
 		{
 			return *this;
 		}
@@ -89,6 +89,8 @@ namespace assignment3
 
 			other.mQueue.push(front);
 		}
+
+		return *this;
 	}
 
 	template<typename T>
