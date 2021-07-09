@@ -260,9 +260,4 @@ namespace assignment3
 	{
 		return mQueue.size();
 	}
-
-
-
-
-
 }

@@ -18,7 +18,8 @@ namespace assignment3
 		T mMin;
 		T mMax;
 
-		double mSum;
+		double mSumD;
+		T mSumT;
 		double mSqrSum;
 	
 	public:
@@ -42,7 +43,7 @@ namespace assignment3
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
-		: mCount(0), mSum(0), mSqrSum(0)
+		: mCount(0), mSumD(0), mSqrSum(0), mSumT(0)
 	{
 		mMin = std::numeric_limits<T>::max();
 		mMax = std::numeric_limits<T>::lowest();
@@ -60,7 +61,8 @@ namespace assignment3
 		mMin = other.mMin;
 		mMax = other.mMax;
 
-		mSum = other.mSum;
+		mSumD = other.mSumD;
+		mSumT = other.mSumT;
 		mSqrSum = other.mSqrSum;
 	}
 
@@ -81,7 +83,8 @@ namespace assignment3
 		mMin = other.mMin;
 		mMax = other.mMax;
 
-		mSum = other.mSum;
+		mSumD = other.mSumD;
+		mSumT = other.mSumT;
 		mSqrSum = other.mSqrSum;
 
 		return *this;
@@ -110,8 +113,9 @@ namespace assignment3
 		mMinStack.push(mMin);
 		mMaxStack.push(mMax);
 
+		mSumT += ele;
 		double v = static_cast<double>(ele);
-		mSum += v;
+		mSumD += v;
 		mSqrSum += v * v;
 
 		mCount++;
@@ -126,8 +130,9 @@ namespace assignment3
 		mMinStack.pop();
 		mMaxStack.pop();
 
+		mSumT -= popped;
 		double v = static_cast<double>(popped);
-		mSum -= v;
+		mSumD -= v;
 		mSqrSum -= v * v;
 
 		mCount--;
@@ -182,25 +187,22 @@ namespace assignment3
 	template<typename T>
 	inline double SmartStack<T>::GetAverage() const
 	{
-		double sum = static_cast<double>(mSum);
 		double count = static_cast<double>(mCount);
-		return sum / count;
+		return mSumD / count;
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::GetSum() const
 	{
-		return mSum;
+		return mSumT;
 	}
 
 	template<typename T>
 	inline double SmartStack<T>::GetVariance() const
 	{
-		double sum = static_cast<double>(mSum);
-		double sqrSum = static_cast<double>(mSqrSum);
 		double count = static_cast<double>(mCount);
 
-		return sqrSum / count - (sum / count) * (sum / count);
+		return mSqrSum / count - (mSumD / count) * (mSumD / count);
 	}
 
 	template<typename T>
