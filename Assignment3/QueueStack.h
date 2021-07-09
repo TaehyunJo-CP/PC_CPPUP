@@ -3,7 +3,6 @@
 #include <stack>
 #include <limits>
 #include <cmath>
-#include <vector>
 
 namespace assignment3
 {
@@ -100,25 +99,21 @@ namespace assignment3
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
 
-			std::vector<T> tmp;
+			std::stack<T>* tmp = new std::stack<T>(*front);
 
 			int s = front->size();
 			for (int j = 0; j < s; j++)
 			{
 				T top = front->top();
-				if (top > max)
+				if (max < top)
 				{
 					max = top;
 				}
-				tmp.push_back(top);
-
 				front->pop();
 			}
 
-			for (int j = tmp.size() - 1; j >= 0; j--)
-			{
-				front->push(tmp[j]);
-			}
+			delete front;
+			front = tmp;
 
 			mQueue.push(front);
 		}
@@ -136,25 +131,21 @@ namespace assignment3
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
 
-			std::vector<T> tmp;
+			std::stack<T>* tmp = new std::stack<T>(*front);
 
 			int s = front->size();
 			for (int j = 0; j < s; j++)
 			{
 				T top = front->top();
-				if (top < min)
+				if (min > top)
 				{
 					min = top;
 				}
-				tmp.push_back(top);
-
 				front->pop();
 			}
 
-			for (int j = tmp.size() - 1; j >= 0; j--)
-			{
-				front->push(tmp[j]);
-			}
+			delete front;
+			front = tmp;
 
 			mQueue.push(front);
 		}
@@ -181,24 +172,18 @@ namespace assignment3
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
 
-			std::vector<T> tmp;
+			std::stack<T>* tmp = new std::stack<T>(*front);
 
 			int s = front->size();
 			for (int j = 0; j < s; j++)
 			{
 				T top = front->top();
-				
 				sum += top;
-
-				tmp.push_back(top);
-
 				front->pop();
 			}
 
-			for (int j = tmp.size() - 1; j >= 0; j--)
-			{
-				front->push(tmp[j]);
-			}
+			delete front;
+			front = tmp;
 
 			mQueue.push(front);
 		}
@@ -215,7 +200,6 @@ namespace assignment3
 		{
 			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
-
 			count += front->size();
 			mQueue.push(front);
 		}
