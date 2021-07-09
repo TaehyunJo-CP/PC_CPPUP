@@ -135,7 +135,9 @@ namespace assignment3
 		selectedStack->pop();
 		if (selectedStack->size() == 0)
 		{
+			std::stack<T>* front = mQueue.front();
 			mQueue.pop();
+			delete front;
 		}
 
 		return ele;
