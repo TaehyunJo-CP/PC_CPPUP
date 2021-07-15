@@ -9,7 +9,7 @@ namespace lab9
 	{
 	public:
 		ObjectPool(size_t maxPoolSize)
-		: mMaxPoolSize(maxPoolSize)
+			: mMaxPoolSize(maxPoolSize)
 		{
 		}
 

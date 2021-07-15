@@ -3,7 +3,7 @@
 namespace lab9
 {
 	Game::Game(unsigned int seed, unsigned int poolSize)
-	: mPoolSize(poolSize), mIceCubePool(poolSize)
+		: mPoolSize(poolSize), mIceCubePool(poolSize)
 	{
 		srand(seed);
 	}
