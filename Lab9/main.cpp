@@ -3,50 +3,54 @@
 #include "ObjectPool.h"
 #include "Game.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 using namespace lab9;
 
 int main()
 {
-	ObjectPool<IceCube> op(1);
-	op.GetFreeObjectCount(); // 0을 반환
+	//ObjectPool<IceCube> op(1);
+	//op.GetFreeObjectCount(); // 0을 반환
 
-	IceCube* i10 = op.Get();
-	IceCube* i20 = op.Get();
+	//IceCube* i10 = op.Get();
+	//IceCube* i20 = op.Get();
 
-	op.Return(i10);
-	assert(op.GetFreeObjectCount() == 1); // 1을 반환
+	//op.Return(i10);
+	//assert(op.GetFreeObjectCount() == 1); // 1을 반환
 
-	op.Return(i20);
-	assert(op.GetFreeObjectCount() == 1); // 1을 반환
+	//op.Return(i20);
+	//assert(op.GetFreeObjectCount() == 1); // 1을 반환
 
 
-	ObjectPool<IceCube> pool(3);
+	//ObjectPool<IceCube> pool(3);
 
-	assert(pool.GetMaxFreeObjectCount() == 3);
-	assert(pool.GetFreeObjectCount() == 0);
+	//assert(pool.GetMaxFreeObjectCount() == 3);
+	//assert(pool.GetFreeObjectCount() == 0);
 
-	IceCube* i1 = pool.Get();
-	i1->Initialize(5);
+	//IceCube* i1 = pool.Get();
+	//i1->Initialize(5);
 
-	IceCube* i2 = pool.Get();
-	i2->Initialize(1);
+	//IceCube* i2 = pool.Get();
+	//i2->Initialize(1);
 
-	IceCube* i3 = pool.Get();
-	i3->Initialize(4);
+	//IceCube* i3 = pool.Get();
+	//i3->Initialize(4);
 
-	assert(pool.GetFreeObjectCount() == 0);
-	i1->Reset();
-	pool.Return(i1);
-	assert(pool.GetFreeObjectCount() == 1);
+	//assert(pool.GetFreeObjectCount() == 0);
+	//i1->Reset();
+	//pool.Return(i1);
+	//assert(pool.GetFreeObjectCount() == 1);
 
-	IceCube* i4 = pool.Get();
+	//IceCube* i4 = pool.Get();
 
-	assert(i1 == i4);
-	assert(!(i4->IsActive()));
+	//assert(i1 == i4);
+	//assert(!(i4->IsActive()));
 
-	pool.Return(i2);
-	pool.Return(i3);
-	pool.Return(i4);
+	//pool.Return(i2);
+	//pool.Return(i3);
+	//pool.Return(i4);
 
 	Game game(1, 4);
 	const std::vector<IceCube*>& activeGameObjects = game.GetActiveGameObjects();
@@ -82,4 +86,6 @@ int main()
 	assert(i6 == i5);
 
 	op2.Return(i6);
+
+	_CrtDumpMemoryLeaks();
 }

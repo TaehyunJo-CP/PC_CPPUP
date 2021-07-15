@@ -1,5 +1,6 @@
 #pragma once
 #include <deque>
+#include <cassert>
 
 namespace lab9
 {
@@ -19,7 +20,8 @@ namespace lab9
 
 		virtual ~ObjectPool()
 		{
-			for (int i = 0; i < mPool.size(); i++)
+			unsigned int s = mPool.size();
+			for (unsigned int i = 0; i < s; i++)
 			{
 				T* t = mPool.front();
 				mPool.pop_front();

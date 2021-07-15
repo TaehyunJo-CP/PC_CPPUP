@@ -17,6 +17,7 @@ namespace lab9
 		void Spawn();
 		void Update();
 		const std::vector<IceCube*>& GetActiveGameObjects() const;
+		ObjectPool<IceCube>& GetObjectPool();
 
 	private:
 		enum { MAX_FRAME_COUNT_TO_LIVE = 100 };
