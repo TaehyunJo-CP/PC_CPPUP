@@ -7,16 +7,14 @@ namespace lab9
 	template<typename T>
 	class ObjectPool
 	{
-
-	private:
-		const size_t mMaxPoolSize;
-		std::deque<T*> mPool;
-
 	public:
 		ObjectPool(size_t maxPoolSize)
 		: mMaxPoolSize(maxPoolSize)
 		{
 		}
+
+		ObjectPool(ObjectPool& other) = delete;
+		ObjectPool& operator=(ObjectPool& other) = delete;
 
 		virtual ~ObjectPool()
 		{
@@ -68,5 +66,10 @@ namespace lab9
 		{
 			return mPool.size();
 		}
+
+	private:
+		const size_t mMaxPoolSize;
+		std::deque<T*> mPool;
+
 	};
 }
