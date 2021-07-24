@@ -98,11 +98,11 @@ namespace lab10
 	template<typename T>
 	bool DoublyLinkedList<T>::Delete(const T& data)
 	{
-		bool isDeleted = false;
+		bool mIsDeleted = false;
 		std::shared_ptr<Node<T>> node = mRoot;
 		if (node == nullptr)
 		{
-			return isDeleted;
+			return mIsDeleted;
 		}
 		
 		while (true)
@@ -127,7 +127,7 @@ namespace lab10
 						nextNode->Previous = preNode;
 					}
 				}
-				isDeleted = true;
+				mIsDeleted = true;
 				break;
 			}
 
@@ -139,7 +139,7 @@ namespace lab10
 			}
 		}
 
-		return isDeleted;
+		return mIsDeleted;
 	}
 
 	template<typename T>
