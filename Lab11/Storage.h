@@ -27,14 +27,14 @@ namespace lab11
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length)
-	: mLength(length)
+		: mLength(length)
 	{
 		mData = std::make_unique<T[]>(mLength);
 	}
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length, const T& initialValue)
-	: mLength(length)
+		: mLength(length)
 	{
 		mData = std::make_unique<T[]>(mLength);
 
@@ -47,7 +47,7 @@ namespace lab11
 
 	template<typename T>
 	Storage<T>::Storage(Storage&& other)
-	: mLength(other.mLength)
+		: mLength(other.mLength)
 	{
 		mData = std::move(other.mData);
 
@@ -57,7 +57,7 @@ namespace lab11
 
 	template<typename T>
 	Storage<T>::Storage(const Storage& other)
-	: mLength(other.mLength)
+		: mLength(other.mLength)
 	{
 		mData = std::make_unique<T[]>(mLength);
 
@@ -72,6 +72,8 @@ namespace lab11
 	{
 		if (this != &other)
 		{
+			mData.reset();
+
 			mData = std::move(other.mData);
 			mLength = other.mLength;
 
@@ -87,6 +89,8 @@ namespace lab11
 	{
 		if (this != &other)
 		{
+			mData.reset();
+
 			mData = std::make_unique<T[]>(mLength);
 			mLength = other.mLength;
 

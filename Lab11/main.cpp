@@ -84,6 +84,8 @@ int main()
 		assert(data5[i] == SIZE2 - i - 1);
 	}
 
+	Storage<char> storage6(storage4Copy);
+
 	std::cout << "Done" << std::endl;
 
 	return 0;
