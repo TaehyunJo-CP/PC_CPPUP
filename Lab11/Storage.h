@@ -72,10 +72,8 @@ namespace lab11
 	{
 		if (this != &other)
 		{
-			mData.reset();
-
-			mData = std::move(other.mData);
 			mLength = other.mLength;
+			mData = std::move(other.mData);
 
 			other.mData = nullptr;
 			other.mLength = 0;
@@ -89,10 +87,8 @@ namespace lab11
 	{
 		if (this != &other)
 		{
-			mData.reset();
-
-			mData = std::make_unique<T[]>(mLength);
 			mLength = other.mLength;
+			mData = std::make_unique<T[]>(mLength);
 
 			for (unsigned int i = 0; i < mLength; i++)
 			{
