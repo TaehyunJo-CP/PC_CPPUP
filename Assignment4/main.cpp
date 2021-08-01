@@ -81,14 +81,12 @@ int main()
 
 	v = tree.TraverseInOrder(tree.GetRootNode().lock());
 
-	assert(v.size() == 7);
+	assert(v.size() == 5);
 	assert(v[0] == 4);
-	assert(v[1] == 5);
-	assert(v[2] == 10);
-	assert(v[3] == 12);
-	assert(v[4] == 17);
-	assert(v[5] == 19);
-	assert(v[6] == 20);
+	assert(v[1] == 10);
+	assert(v[2] == 12);
+	assert(v[3] == 19);
+	assert(v[4] == 20);
 
 	bool bSearched = tree.Search(15);
 	assert(!bSearched);

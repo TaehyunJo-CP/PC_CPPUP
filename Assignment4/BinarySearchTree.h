@@ -23,6 +23,7 @@ namespace assignment4
 		static void inOrder(std::shared_ptr<TreeNode<T>> node, std::vector<T>& result);
 
 		std::shared_ptr<TreeNode<T>> getMinNode(std::shared_ptr<TreeNode<T>> node);
+		bool deleteFromNode(std::shared_ptr<TreeNode<T>> node, const T& data);
 
 	};
 
@@ -127,86 +128,7 @@ namespace assignment4
 		} 
 		else
 		{
-			std::shared_ptr<TreeNode<T>> curNode = mRoot;
-			
-			// 지울 노드 찾기
-			while (true)
-			{
-				if (*(curNode->Data) == data)
-				{
-					break;
-				} 
-				else
-				{
-					if (*(curNode->Data) >= data)
-					{
-						if (curNode->Left == nullptr)
-						{
-							return false;
-						} 
-						else
-						{
-							curNode = curNode->Left;
-						}
-					} else
-					{
-						if (curNode->Right == nullptr)
-						{
-							return false;
-						} 
-						else
-						{
-							curNode = curNode->Right;
-						}
-					}
-				}
-			}
-
-			// 지우기
-			if (curNode->Left == nullptr && curNode->Right == nullptr)
-			{
-				auto parent = (curNode->Parent).lock();
-
-				if (parent->Left == curNode)
-				{
-					parent->Left = nullptr;
-				}
-				else if (parent->Right == curNode)
-				{
-					parent->Right = nullptr;
-				}
-				return true;
-			}
-			else if (curNode->Left == nullptr || curNode->Right == nullptr)
-			{
-				auto parent = (curNode->Parent).lock();
-
-				std::shared_ptr<TreeNode<T>> temp;
-
-				if (curNode->Left != nullptr)
-				{
-					temp = curNode->Left;
-				}
-				else
-				{
-					temp = curNode->Right;
-				}
-
-				if (parent->Left == curNode)
-				{
-					parent->Left = temp;
-					temp->Parent = parent;
-				}
-				else
-				{
-					parent->Right = temp;
-					temp->Parent = parent;
-				}
-			}
-			else if (curNode->Left != nullptr && curNode->Right != nullptr)
-			{
-				auto parent = (curNode->Parent).lock();
-			}
+			return deleteFromNode(mRoot, data);
 		}
 	}
 
@@ -230,6 +152,102 @@ namespace assignment4
 	template<typename T>
 	inline std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getMinNode(std::shared_ptr<TreeNode<T>> node)
 	{
-		return std::shared_ptr<TreeNode<T>>();
+		if (node == nullptr)
+		{
+			return nullptr;
+		}
+
+		if (node->Left == nullptr)
+		{
+			return node;
+		}
+		else
+		{
+			return getMinNode(node->Left);
+		}
+
+	}
+	template<typename T>
+	inline bool BinarySearchTree<T>::deleteFromNode(std::shared_ptr<TreeNode<T>> node, const T& data)
+	{
+		std::shared_ptr<TreeNode<T>> curNode = node;
+
+		// 지울 노드 찾기
+		while (true)
+		{
+			if (*(curNode->Data) == data)
+			{
+				break;
+			} else
+			{
+				if (*(curNode->Data) >= data)
+				{
+					if (curNode->Left == nullptr)
+					{
+						return false;
+					} else
+					{
+						curNode = curNode->Left;
+					}
+				} else
+				{
+					if (curNode->Right == nullptr)
+					{
+						return false;
+					} else
+					{
+						curNode = curNode->Right;
+					}
+				}
+			}
+		}
+
+		// 지우기
+		if (curNode->Left == nullptr && curNode->Right == nullptr)
+		{
+			auto parent = (curNode->Parent).lock();
+
+			if (parent->Left == curNode)
+			{
+				parent->Left = nullptr;
+			} else if (parent->Right == curNode)
+			{
+				parent->Right = nullptr;
+			}
+			return true;
+		} else if (curNode->Left == nullptr || curNode->Right == nullptr)
+		{
+			auto parent = (curNode->Parent).lock();
+
+			std::shared_ptr<TreeNode<T>> temp;
+
+			if (curNode->Left != nullptr)
+			{
+				temp = curNode->Left;
+			} else
+			{
+				temp = curNode->Right;
+			}
+
+			if (parent->Left == curNode)
+			{
+				parent->Left = temp;
+				temp->Parent = parent;
+			} else
+			{
+				parent->Right = temp;
+				temp->Parent = parent;
+			}
+		} else if (curNode->Left != nullptr && curNode->Right != nullptr)
+		{
+			auto parent = (curNode->Parent).lock();
+
+			auto minNodeOfRight = getMinNode(curNode->Right);
+			deleteFromNode(curNode, *(minNodeOfRight->Data));
+			*(curNode->Data) = *(minNodeOfRight->Data);
+
+		}
+
+		return true;
 	}
 }
