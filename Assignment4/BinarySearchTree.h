@@ -20,11 +20,10 @@ namespace assignment4
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 	private:
 		std::shared_ptr<TreeNode<T>> mRoot;
-		static void inOrder(std::shared_ptr<TreeNode<T>> node, std::vector<T>& result);
+		static void traverseInOrder(std::shared_ptr<TreeNode<T>> node, std::vector<T>& result);
 
-		std::shared_ptr<TreeNode<T>> getMinNode(std::shared_ptr<TreeNode<T>> node);
+		std::shared_ptr<TreeNode<T>> getMinNodeFromNode(std::shared_ptr<TreeNode<T>> node);
 		bool deleteFromNode(std::shared_ptr<TreeNode<T>> node, const T& data);
-
 	};
 
 	template<typename T>
@@ -109,13 +108,32 @@ namespace assignment4
 						if (curNode->Right == nullptr)
 						{
 							return false;
-						} else
+						} 
+						else
 						{
 							curNode = curNode->Right;
 						}
 					}
 				}
 			}
+		}
+	}
+
+	template<typename T>
+	std::vector<T> BinarySearchTree<T>::TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode)
+	{
+		std::vector<T> v;
+		traverseInOrder(startNode, v);
+		return v;
+	}
+	template<typename T>
+	inline void BinarySearchTree<T>::traverseInOrder(std::shared_ptr<TreeNode<T>> node, std::vector<T>& result)
+	{
+		if (node != nullptr)
+		{
+			traverseInOrder(node->Left, result);
+			result.push_back(*(node->Data));
+			traverseInOrder(node->Right, result);
 		}
 	}
 
@@ -131,26 +149,9 @@ namespace assignment4
 			return deleteFromNode(mRoot, data);
 		}
 	}
-
+	
 	template<typename T>
-	std::vector<T> BinarySearchTree<T>::TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode)
-	{
-		std::vector<T> v;
-		inOrder(startNode, v);
-		return v;
-	}
-	template<typename T>
-	inline void BinarySearchTree<T>::inOrder(std::shared_ptr<TreeNode<T>> node, std::vector<T>& result)
-	{
-		if (node != nullptr)
-		{
-			inOrder(node->Left, result);
-			result.push_back(*(node->Data));
-			inOrder(node->Right, result);
-		}
-	}
-	template<typename T>
-	inline std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getMinNode(std::shared_ptr<TreeNode<T>> node)
+	inline std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::getMinNodeFromNode(std::shared_ptr<TreeNode<T>> node)
 	{
 		if (node == nullptr)
 		{
@@ -163,7 +164,7 @@ namespace assignment4
 		}
 		else
 		{
-			return getMinNode(node->Left);
+			return getMinNodeFromNode(node->Left);
 		}
 
 	}
@@ -172,29 +173,33 @@ namespace assignment4
 	{
 		std::shared_ptr<TreeNode<T>> curNode = node;
 
-		// 지울 노드 찾기
+		// 지울 노드의 부모 찾기
 		while (true)
 		{
 			if (*(curNode->Data) == data)
 			{
 				break;
-			} else
+			} 
+			else
 			{
 				if (*(curNode->Data) >= data)
 				{
 					if (curNode->Left == nullptr)
 					{
 						return false;
-					} else
+					} 
+					else
 					{
 						curNode = curNode->Left;
 					}
-				} else
+				} 
+				else
 				{
 					if (curNode->Right == nullptr)
 					{
 						return false;
-					} else
+					} 
+					else
 					{
 						curNode = curNode->Right;
 					}
@@ -202,7 +207,7 @@ namespace assignment4
 			}
 		}
 
-		// 지우기
+		// 지우기 case #1, #2, #3
 		if (curNode->Left == nullptr && curNode->Right == nullptr)
 		{
 			auto parent = (curNode->Parent).lock();
@@ -219,8 +224,8 @@ namespace assignment4
 			{
 				parent->Right = nullptr;
 			}
-			return true;
-		} else if (curNode->Left == nullptr || curNode->Right == nullptr)
+		} 
+		else if (curNode->Left == nullptr || curNode->Right == nullptr)
 		{
 			auto parent = (curNode->Parent).lock();
 
@@ -229,16 +234,15 @@ namespace assignment4
 			if (curNode->Left != nullptr)
 			{
 				temp = curNode->Left;
-			} else
+			} 
+			else
 			{
 				temp = curNode->Right;
 			}
 
 			if (parent == nullptr)
 			{
-				*(mRoot->Data) = *(temp->Data);
-				mRoot->Left = nullptr;
-				mRoot->Right = nullptr;
+				mRoot = temp;
 			}
 			else if (parent->Left == curNode)
 			{
@@ -250,12 +254,12 @@ namespace assignment4
 				parent->Right = temp;
 				temp->Parent = parent;
 			}
-		} else if (curNode->Left != nullptr && curNode->Right != nullptr)
+		} 
+		else if (curNode->Left != nullptr && curNode->Right != nullptr)
 		{
-			auto minNodeOfRight = getMinNode(curNode->Right);
+			auto minNodeOfRight = getMinNodeFromNode(curNode->Right);
 			deleteFromNode(curNode, *(minNodeOfRight->Data));
 			*(curNode->Data) = *(minNodeOfRight->Data);
-
 		}
 
 		return true;

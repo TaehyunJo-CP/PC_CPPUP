@@ -19,6 +19,17 @@ int main()
 	Test_Traverse();
 	Test_Delete_0hoo();
 
+	BinarySearchTree<int> tree;
+
+	tree.Insert(std::make_unique<int>(5));
+	tree.Insert(std::make_unique<int>(5));
+	tree.Insert(std::make_unique<int>(5));
+
+	tree.Delete(5);
+	tree.Delete(5);
+	tree.Delete(5);
+	
+
 	return 0;
 }
 
