@@ -207,10 +207,15 @@ namespace assignment4
 		{
 			auto parent = (curNode->Parent).lock();
 
-			if (parent->Left == curNode)
+			if (parent == nullptr)
+			{
+				mRoot = nullptr;
+			}
+			else if (parent->Left == curNode)
 			{
 				parent->Left = nullptr;
-			} else if (parent->Right == curNode)
+			} 
+			else if (parent->Right == curNode)
 			{
 				parent->Right = nullptr;
 			}
@@ -229,19 +234,24 @@ namespace assignment4
 				temp = curNode->Right;
 			}
 
-			if (parent->Left == curNode)
+			if (parent == nullptr)
+			{
+				*(mRoot->Data) = *(temp->Data);
+				mRoot->Left = nullptr;
+				mRoot->Right = nullptr;
+			}
+			else if (parent->Left == curNode)
 			{
 				parent->Left = temp;
 				temp->Parent = parent;
-			} else
+			} 
+			else
 			{
 				parent->Right = temp;
 				temp->Parent = parent;
 			}
 		} else if (curNode->Left != nullptr && curNode->Right != nullptr)
 		{
-			auto parent = (curNode->Parent).lock();
-
 			auto minNodeOfRight = getMinNode(curNode->Right);
 			deleteFromNode(curNode, *(minNodeOfRight->Data));
 			*(curNode->Data) = *(minNodeOfRight->Data);
